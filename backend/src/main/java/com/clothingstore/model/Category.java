@@ -1,18 +1,34 @@
 package com.clothingstore.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Category")
-@Table(name = "category")
+@Table(name = "category",
+       uniqueConstraints = {
+            @UniqueConstraint(name = "uq_category_name_sub_category", columnNames = {"name", "subCategory"})
+       })
+@Data
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String subCategory;
+
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
+
+    public Category() {}
+
+    public Category(String name, String subCategory) {
+        this.name = name;
+        this.subCategory = subCategory;
+    }
 }
