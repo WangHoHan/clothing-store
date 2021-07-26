@@ -4,9 +4,12 @@ import com.clothingstore.exception.ProductNotFoundException;
 import com.clothingstore.model.Product;
 import com.clothingstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class ProductService {
 
     private final ProductRepository productRepository;
@@ -33,6 +36,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
+    @Transactional
     public void deleteProduct(Long id) {
         productRepository.deleteProductById(id);
     }
