@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&display=swap');
+
+#nav-wrapper {
+  margin: 20px 10px;
+}
+
+button {
+  border: 0px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 8px 13px;
+  text-transform: uppercase;
+}
+
+#button-home {
+  background-color: tomato;
+  color: white;
+}
+
+#search-bar-wrapper {
+  float: right;
+}
+
+#search-bar {
+  border: 0px;
+  font-family: 'Gentium Book Basic', serif;
+  font-size: 1.4rem;
+  outline: none;
+  width: 315px;
+}
+
+::placeholder {
+  color: black;
+}
+
+#button-search {
+  background-color: transparent;
+  padding: 0px;
+  height: 18px;
+  width: 18px;
+}
+
+#button-search img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#nav-categories {
+  list-style-type: none;
+  margin: 6px 0px;
+  padding: 0px;
+}
+
+#category-nav-wrapper ul li {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.button-category {
+  background-color: khaki;
+}
+
+#aside-wrapper {
+  float: right;
+}
+
+#aside-menu {
+  text-decoration: none;
+}
+
+#aside-menu li {
+  display: block;
+  height: 16px;
+  text-align: right;
+}
+
+#aside-menu li a {
+  color: black;
+  font-size: 11px;
+  letter-spacing: .0em;
+  text-decoration: none;
+}
+
+#shop-feed-wrapper {
+  float: right;
+  font-size: 11px;
+  margin-top: 20px;
+  text-align: right;
+}
