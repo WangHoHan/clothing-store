@@ -1,5 +1,6 @@
 package com.clothingstore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,13 +27,13 @@ public class ProductInfo {
 
     private String modelWeight;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "product_id")
+    @OneToOne(mappedBy = "productInfo", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Product product;
 
     public ProductInfo() {}
 
-    public ProductInfo(String color, String fabrics, String image, String modelSize, String modelHeight, String modelWeight, Product product) {
+    public ProductInfo(String color, String fabrics, String image, String modelSize, String modelHeight, String modelWeight) {
         this.color = color;
         this.fabrics = fabrics;
         this.image = image;

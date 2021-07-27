@@ -2,6 +2,8 @@ package com.clothingstore.service;
 
 import com.clothingstore.exception.ProductNotFoundException;
 import com.clothingstore.model.Product;
+import com.clothingstore.model.ProductInfo;
+import com.clothingstore.repository.ProductInfoRepository;
 import com.clothingstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,12 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    private final ProductInfoRepository productInfoRepository;
+
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository) {
         this.productRepository = productRepository;
+        this.productInfoRepository = productInfoRepository;
     }
 
     public List<Product> findAllProducts() {
@@ -29,10 +34,17 @@ public class ProductService {
     }
 
     public Product addProduct(Product product) {
+        ProductInfo productInfo = product.getProductInfo();
+        productInfoRepository.save(productInfo);
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Product product) {
+    public Product updateProduct(Product product, Long id) {
+        product.setId(id);
+        if (product.getProductInfo() == null) {
+            ProductInfo productInfo = productInfoRepository.findProductInfoByProductId(product.getId());
+            product.setProductInfo(productInfo);
+        }
         return productRepository.save(product);
     }
 

@@ -1,5 +1,6 @@
 package com.clothingstore.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,7 +29,9 @@ public class Product {
 
     private Double discount;
 
-    @OneToOne(mappedBy = "product")
+    @OneToOne(optional = false, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "product_info_id")
+    @JsonManagedReference
     private ProductInfo productInfo;
 
     @OneToMany(mappedBy = "product")
@@ -42,7 +45,7 @@ public class Product {
 
     public Product() {}
 
-    public Product(String name, String description, String gender, Double price, Double discount) {
+    public Product(String name, String description, String gender, Double price, Double discount, ProductInfo productInfo) {
         this.name = name;
         this.description = description;
         this.gender = gender;
