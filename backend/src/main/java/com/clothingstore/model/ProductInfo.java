@@ -40,6 +40,5 @@ public class ProductInfo {
         this.modelSize = modelSize;
         this.modelHeight = modelHeight;
         this.modelWeight = modelWeight;
-        this.product = product;
     }
 }

@@ -35,6 +35,7 @@ public class Product {
     private ProductInfo productInfo;
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference
     private List<Size> sizes = new ArrayList<>();
 
     @ManyToMany
@@ -51,5 +52,6 @@ public class Product {
         this.gender = gender;
         this.price = price;
         this.discount = discount;
+        this.productInfo = productInfo;
     }
 }

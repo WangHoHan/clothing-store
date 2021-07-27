@@ -1,5 +1,6 @@
 package com.clothingstore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Size {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "product_id")
+    @JsonBackReference
     private Product product;
 
     public Size() {}
