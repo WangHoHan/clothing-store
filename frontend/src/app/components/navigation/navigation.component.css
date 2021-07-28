@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 #nav-wrapper {
-  margin: 20px 10px;
+  height: 350px;
+  overflow: auto;
+  z-index: 1;
 }
 
 button {
@@ -13,21 +15,41 @@ button {
   text-transform: uppercase;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: navajowhite;
+  text-decoration: underline;
+}
+
 #button-home {
   background-color: tomato;
   color: white;
+  left: 20px;
+  position: fixed;
+  top: 20px;
+}
+
+#button-home:hover {
+  background-color: coral;
 }
 
 #search-bar-wrapper {
-  float: right;
+  position: fixed;
+  right: 20px;
+  top: 20px;
 }
 
 #search-bar {
   border: 0px;
-  font-family: 'Gentium Book Basic', serif;
-  font-size: 1.4rem;
+  text-align: right;
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
   outline: none;
-  width: 315px;
+  margin-right: 10px;
+  width: 340px
 }
 
 ::placeholder {
@@ -46,6 +68,16 @@ button {
   max-width: 100%;
 }
 
+#button-search img:hover {
+  cursor: pointer;
+}
+
+#category-nav-wrapper {
+  position: fixed;
+  left: 20px;
+  top: 50px;
+}
+
 #nav-categories {
   list-style-type: none;
   margin: 6px 0px;
@@ -59,10 +91,48 @@ button {
 
 .button-category {
   background-color: khaki;
+  margin-top: 5px;
+}
+
+.mat-menu-wrapper {
+  background-color: coral;
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: navajowhite;
+  left: 0px !important;
+  margin: 0px 10px !important;
+  max-width: none !important;
+  padding-bottom: 20px !important;
+  position: absolute !important;
+  right: 0px !important;
+  top: 128px !important;
+}
+
+::ng-deep .mat-menu-content {
+  padding-top: 0px !important;
+}
+
+.mat-menu-categories {
+  float: left;
+  width: 200px;
+}
+
+.mat-menu-categories button {
+  background-color: transparent;
+  text-transform: none;
+}
+
+::ng-deep .mat-menu-item {
+  height: 40px !important;
 }
 
 #aside-wrapper {
-  float: right;
+  letter-spacing: 0rem;
+  position: fixed;
+  right: 20px;
+  top: 110px;
+  word-spacing: 4px;
 }
 
 #aside-menu {
@@ -78,8 +148,11 @@ button {
 #aside-menu li a {
   color: black;
   font-size: 11px;
-  letter-spacing: .0em;
   text-decoration: none;
+}
+
+#aside-menu li a:hover {
+  text-decoration: underline;
 }
 
 #shop-feed-wrapper {

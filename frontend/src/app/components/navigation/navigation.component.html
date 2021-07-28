@@ -1,70 +1,236 @@
 <div id="nav-wrapper">
   <nav>
-    <div id="home-nav-wrapper">
-      <button id="button-home">shop</button>
-      <div id="search-bar-wrapper">
-        <input id="search-bar" type="text" placeholder="Hello, how can I help you today?">
-        <button id="button-search" type="submit">
-          <img src="assets/magnifyingglass.webp">
-        </button>
+    <div id="menu-wrapper">
+      <div id="home-nav-wrapper">
+        <button id="button-home">shop</button>
+        <div id="search-bar-wrapper">
+          <input id="search-bar" type="text" placeholder="Hello, how can I help you today?">
+          <button id="button-search" type="submit">
+            <img src="assets/magnifyingglass.webp">
+          </button>
+        </div>
       </div>
-    </div>
-    <div id="category-nav-wrapper">
-      <ul id="nav-categories">
-        <li>
-          <button class="button-category">new arrivals</button>
-        </li>
-        <li>
-          <button class="button-category">shop man</button>
-        </li>
-        <li>
-          <button class="button-category">shop woman</button>
-        </li>
-        <li>
-          <button class="button-category">shop kids</button>
-        </li>
-        <li>
-          <button class="button-category">special items</button>
-        </li>
-        <li>
-          <button class="button-category">homeware</button>
-        </li>
-      </ul>
+      <div id="category-nav-wrapper">
+        <ul id="nav-categories">
+          <li>
+            <button class="button-category" mat-icon-button [matMenuTriggerFor]="new_arrivals_category">new arrivals</button>
+          </li>
+          <li>
+            <button class="button-category" mat-icon-button [matMenuTriggerFor]="shop_man_category">shop man</button>
+          </li>
+          <li>
+            <button class="button-category" mat-icon-button [matMenuTriggerFor]="shop_woman_category">shop woman</button>
+          </li>
+          <li>
+            <button class="button-category" mat-icon-button [matMenuTriggerFor]="shop_kids_category">shop kids</button>
+          </li>
+          <li>
+            <button class="button-category">special items</button>
+          </li>
+          <li>
+            <button class="button-category" mat-icon-button [matMenuTriggerFor]="homeware_category">homeware</button>
+          </li>
+        </ul>
+      </div>
+      <div class="mat-menu-wrapper">
+        <mat-menu #new_arrivals_category>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>MEN COLLECTION</button>
+            <button mat-menu-item>Clothing</button>
+            <button mat-menu-item>Bags</button>
+            <button mat-menu-item>Shoes</button>
+            <button mat-menu-item>Accesories</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>WOMEN COLLECTION</button>
+            <button mat-menu-item>Clothing</button>
+            <button mat-menu-item>Activewear</button>
+            <button mat-menu-item>Bags</button>
+            <button mat-menu-item>Shoes</button>
+            <button mat-menu-item>Accesories</button>
+            <button mat-menu-item>Jewelery</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>SPECIAL ITEMS</button>
+            <button mat-menu-item>Homeware Exclusive</button>
+          </div>
+        </mat-menu>
+        <mat-menu #shop_man_category>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>CLOTHING</button>
+            <button mat-menu-item>Denim</button>
+            <button mat-menu-item>Jackets</button>
+            <button mat-menu-item>Pants</button>
+            <button mat-menu-item>Shirts</button>
+            <button mat-menu-item>Shorts</button>
+            <button mat-menu-item>Swimwear</button>
+            <button mat-menu-item>T-Shirts</button>
+            <button mat-menu-item>Underwear & Socks</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>ACTIVEWEAR</button>
+            <button mat-menu-item>Accesories</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>BAGS</button>
+            <button mat-menu-item>Backpacks</button>
+            <button mat-menu-item>Belt Bags</button>
+            <button mat-menu-item>Clutch Bags</button>
+            <button mat-menu-item>Shoulder Bags</button>
+            <button mat-menu-item>Tote Bags</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>SHOES</button>
+            <button mat-menu-item>Boots</button>
+            <button mat-menu-item>Flip Flop</button>
+            <button mat-menu-item>Sneakers</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>ACCESSORIES</button>
+            <button mat-menu-item>Belts</button>
+            <button mat-menu-item>Masks</button>
+            <button mat-menu-item>Hats</button>
+            <button mat-menu-item>Keyrings & Chains</button>
+            <button mat-menu-item>Scarves</button>
+            <button mat-menu-item>Wallets & Cardholders</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>JEWELRY</button>
+            <button mat-menu-item>Bracelets</button>
+            <button mat-menu-item>Necklaces</button>
+            <button mat-menu-item>Rings</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>SUNGLASSES</button>
+            <button mat-menu-item>Sunglasses</button>
+          </div>
+        </mat-menu>
+        <mat-menu #shop_woman_category>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>CLOTHING</button>
+            <button mat-menu-item>Denim</button>
+            <button mat-menu-item>Dresses</button>
+            <button mat-menu-item>Jackets</button>
+            <button mat-menu-item>Knitwear</button>
+            <button mat-menu-item>Pants</button>
+            <button mat-menu-item>Shirts</button>
+            <button mat-menu-item>Shorts</button>
+            <button mat-menu-item>Skirts</button>
+            <button mat-menu-item>Swimwear</button>
+            <button mat-menu-item>Underwear & Socks</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>ACTIVEWEAR</button>
+            <button mat-menu-item>Accesories</button>
+            <button mat-menu-item>Pants</button>
+            <button mat-menu-item>Tops</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>BAGS</button>
+            <button mat-menu-item>Backpacks</button>
+            <button mat-menu-item>Bag Accesories</button>
+            <button mat-menu-item>Belt Bags</button>
+            <button mat-menu-item>Mini Bags</button>
+            <button mat-menu-item>Shoulder Bags</button>
+            <button mat-menu-item>Tote Bags</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>SHOES</button>
+            <button mat-menu-item>Boots</button>
+            <button mat-menu-item>Espadrilles</button>
+            <button mat-menu-item>Flip Flop</button>
+            <button mat-menu-item>Mules</button>
+            <button mat-menu-item>Sandals</button>
+            <button mat-menu-item>Sneakers</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>ACCESSORIES</button>
+            <button mat-menu-item>Belts</button>
+            <button mat-menu-item>Hats</button>
+            <button mat-menu-item>Keyrings & Chains</button>
+            <button mat-menu-item>Masks</button>
+            <button mat-menu-item>Scarves</button>
+            <button mat-menu-item>Wallets & Pursrs</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>JEWELRY</button>
+            <button mat-menu-item>Bracelets</button>
+            <button mat-menu-item>Earrings</button>
+            <button mat-menu-item>Necklaces</button>
+            <button mat-menu-item>Rings</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>SUNGLASSES</button>
+            <button mat-menu-item>Sunglasses</button>
+          </div>
+        </mat-menu>
+        <mat-menu #shop_kids_category>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>BOYS</button>
+            <button mat-menu-item>Boy Clothing</button>
+            <button mat-menu-item>Boy Shoes</button>
+            <button mat-menu-item>Boy Accesories</button>
+          </div>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>GIRLS</button>
+            <button mat-menu-item>Girl Clothing</button>
+            <button mat-menu-item>Girl Shoes</button>
+            <button mat-menu-item>Girl Accesories</button>
+          </div>
+        </mat-menu>
+        <mat-menu #homeware_category>
+          <div class="mat-menu-categories">
+            <button mat-menu-item>HOMEWARE</button>
+            <button mat-menu-item>All Accesories</button>
+            <button mat-menu-item>Bath</button>
+            <button mat-menu-item>Beauty & Grooming</button>
+            <button mat-menu-item>Bedding</button>
+            <button mat-menu-item>Books</button>
+            <button mat-menu-item>Decorative Accesories</button>
+            <button mat-menu-item>Umbrellas</button>
+          </div>
+        </mat-menu>
+      </div>
     </div>
     <div id="aside-wrapper">
       <aside>
-        <ul id="aside-menu">
-          <li>
-            <a href="#">log in</a>
-          </li>
-          <li>
-            <a href="#">wishlist [0]</a>
-          </li>
-          <li>
-            <a href="#">shopping bag [0]</a>
-          </li>
-          <li>
-            <a href="#">customer service</a>
-          </li>
-          <li>
-            <a href="#">newsletter</a>
-          </li>
-          <li>
-            <a href="#">pl zł /english</a>
-          </li>
-        </ul>
+        <div id="aside-menu-wrapper">
+          <ul id="aside-menu">
+            <li>
+              <a href="#">log in</a>
+            </li>
+            <li>
+              <a href="#">wishlist [0]</a>
+            </li>
+            <li>
+              <a href="#">shopping bag [0]</a>
+            </li>
+            <li>
+              <a href="#">customer service</a>
+            </li>
+            <li>
+              <a href="#">newsletter</a>
+            </li>
+            <li>
+              <a href="#">pl zł /english</a>
+            </li>
+          </ul>
+        </div>
+        <div id="shop-feed-wrapper">
+          <div>
+            shop feed
+          </div>
+          <div>
+            00:00AM
+          </div>
+          <div>
+            0 / 0
+          </div>
+          <div>
+            /
+          </div>
+        </div>
       </aside>
-      <div id="shop-feed-wrapper">
-        <div>
-          shop feed
-        </div>
-        <div>
-          00:00AM
-        </div>
-        <div>
-          0 / 0
-        </div>
-      </div>
     </div>
   </nav>
 </div>
