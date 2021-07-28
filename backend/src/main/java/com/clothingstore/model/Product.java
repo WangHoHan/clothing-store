@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "Product")
 @Table(name = "product")
@@ -34,11 +33,11 @@ public class Product {
     @JsonManagedReference
     private ProductInfo productInfo;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private List<Size> sizes = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "product_categories",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")})
@@ -53,5 +52,19 @@ public class Product {
         this.price = price;
         this.discount = discount;
         this.productInfo = productInfo;
+    }
+
+    public void addCategory(Category category) {
+        if (!categories.contains(category)) {
+            categories.add(category);
+            category.getProducts().add(this);
+        }
+    }
+
+    public void removeCategory(Category category) {
+        if (categories.contains(category)) {
+            categories.remove(category);
+            category.getProducts().remove(this);
+        }
     }
 }

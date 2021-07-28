@@ -1,5 +1,6 @@
 package com.clothingstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,7 +23,8 @@ public class Category {
 
     private String subCategory;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     public Category() {}
@@ -30,5 +32,12 @@ public class Category {
     public Category(String name, String subCategory) {
         this.name = name;
         this.subCategory = subCategory;
+    }
+
+    @PreRemove
+    private void removeCategoriesFromProducts() {
+        for (Product product: products) {
+            product.getCategories().remove(this);
+        }
     }
 }

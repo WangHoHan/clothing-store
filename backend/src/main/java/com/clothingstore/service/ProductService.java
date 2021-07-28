@@ -1,9 +1,11 @@
 package com.clothingstore.service;
 
 import com.clothingstore.exception.ResourceNotFoundException;
+import com.clothingstore.model.Category;
 import com.clothingstore.model.Product;
 import com.clothingstore.model.ProductInfo;
 import com.clothingstore.model.Size;
+import com.clothingstore.repository.CategoryRepository;
 import com.clothingstore.repository.ProductInfoRepository;
 import com.clothingstore.repository.ProductRepository;
 import com.clothingstore.repository.SizeRepository;
@@ -22,11 +24,14 @@ public class ProductService {
 
     private final SizeRepository sizeRepository;
 
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, SizeRepository sizeRepository) {
+    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, SizeRepository sizeRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productInfoRepository = productInfoRepository;
         this.sizeRepository = sizeRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public List<Product> findAllProducts() {
@@ -42,7 +47,14 @@ public class ProductService {
         return sizeRepository.findSizesByProductId(id);
     }
 
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product, List<Long> categories) {
+        if (categories != null) {
+            for (Long categoryId: categories) {
+                Category category = categoryRepository.findCategoryById(categoryId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
+                product.addCategory(category);
+            }
+        }
         ProductInfo productInfo = product.getProductInfo();
         productInfoRepository.save(productInfo);
         return productRepository.save(product);
@@ -54,6 +66,17 @@ public class ProductService {
         size.setProduct(product);
         product.getSizes().add(size);
         return sizeRepository.save(size);
+    }
+
+    public Product updateProductCategories(Long id, List<Long> categories) {
+        Product product = productRepository.findProductById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
+        for (Long categoryId: categories) {
+            Category category = categoryRepository.findCategoryById(categoryId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
+            product.addCategory(category);
+        }
+        return productRepository.save(product);
     }
 
     public Product updateProduct(Product product, Long id) {
@@ -77,5 +100,15 @@ public class ProductService {
     @Transactional
     public void deleteProduct(Long id) {
         productRepository.deleteProductById(id);
+    }
+
+    public void deleteProductCategories(Long id, List<Long> categories) {
+        Product product = productRepository.findProductById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
+        for (Long categoryId: categories) {
+            Category category = categoryRepository.findCategoryById(categoryId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
+            product.removeCategory(category);
+        }
     }
 }
