@@ -16,11 +16,8 @@ button {
 }
 
 button:hover {
-  cursor: pointer;
-}
-
-button:hover {
   background-color: navajowhite;
+  cursor: pointer;
   text-decoration: underline;
 }
 
@@ -104,7 +101,7 @@ button:hover {
   margin: 0px 10px !important;
   max-width: none !important;
   padding-bottom: 20px !important;
-  position: absolute !important;
+  position: fixed !important;
   right: 0px !important;
   top: 128px !important;
 }
