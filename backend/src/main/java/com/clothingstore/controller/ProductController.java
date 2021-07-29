@@ -37,6 +37,30 @@ public class ProductController {
         return new ResponseEntity<>(sizes, HttpStatus.OK);
     }
 
+    @GetMapping("/gender/{name}")
+    public ResponseEntity<List<Product>> getProductsByGender(@PathVariable("name") String name) {
+        List<Product> products = productService.findProductsByGender(name);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/category/{name}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable("name") String name) {
+        List<Product> products = productService.findProductsByCategory(name);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/subCategory/{name}")
+    public ResponseEntity<List<Product>> getProductsBySubCategory(@PathVariable("name") String name) {
+        List<Product> products = productService.findProductsBySubCategory(name);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @GetMapping("/color/{name}")
+    public ResponseEntity<List<Product>> getProductsByColor(@PathVariable("name") String name) {
+        List<Product> products = productService.findProductsByColor(name);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product,
                                               @RequestParam(required = false) List<Long> categories) {

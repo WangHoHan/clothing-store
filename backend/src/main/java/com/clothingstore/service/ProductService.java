@@ -47,6 +47,22 @@ public class ProductService {
         return sizeRepository.findSizesByProductId(id);
     }
 
+    public List<Product> findProductsByGender(String name) {
+        return productRepository.findProductsByGender(name);
+    }
+
+    public List<Product> findProductsByCategory(String name) {
+        return productRepository.findProductsByCategory(name);
+    }
+
+    public List<Product> findProductsBySubCategory(String name) {
+        return productRepository.findProductsBySubCategory(name);
+    }
+
+    public List<Product> findProductsByColor(String name) {
+        return productRepository.findProductsByColor(name);
+    }
+
     public Product addProduct(Product product, List<Long> categories) {
         if (categories != null) {
             for (Long categoryId: categories) {
