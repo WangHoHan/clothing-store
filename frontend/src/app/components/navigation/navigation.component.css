@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+#nav-wrapper {
+  height: 350px;
+  overflow: auto;
+  z-index: 1;
+}
+
+button {
+  border: 0px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 8px 13px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: navajowhite;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#button-home {
+  background-color: tomato;
+  color: white;
+  left: 20px;
+  position: fixed;
+  top: 20px;
+}
+
+#button-home:hover {
+  background-color: coral;
+}
+
+#search-bar-wrapper {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+}
+
+#search-bar {
+  border: 0px;
+  text-align: right;
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+  outline: none;
+  margin-right: 10px;
+  width: 340px
+}
+
+::placeholder {
+  color: black;
+}
+
+#button-search {
+  background-color: transparent;
+  padding: 0px;
+  height: 18px;
+  width: 18px;
+}
+
+#button-search img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#button-search img:hover {
+  cursor: pointer;
+}
+
+#category-nav-wrapper {
+  position: fixed;
+  left: 20px;
+  top: 50px;
+}
+
+#nav-categories {
+  list-style-type: none;
+  margin: 6px 0px;
+  padding: 0px;
+}
+
+#category-nav-wrapper ul li {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.button-category {
+  background-color: khaki;
+  margin-top: 5px;
+}
+
+.mat-menu-wrapper {
+  background-color: coral;
+}
+
+::ng-deep .mat-menu-panel {
+  background-color: navajowhite;
+  left: 0px !important;
+  margin: 0px 10px !important;
+  max-width: none !important;
+  padding-bottom: 20px !important;
+  position: fixed !important;
+  right: 0px !important;
+  top: 128px !important;
+}
+
+::ng-deep .mat-menu-content {
+  padding-top: 0px !important;
+}
+
+.mat-menu-categories {
+  float: left;
+  width: 200px;
+}
+
+.mat-menu-categories button {
+  background-color: transparent;
+  text-transform: none;
+}
+
+::ng-deep .mat-menu-item {
+  height: 40px !important;
+}
+
+#aside-wrapper {
+  letter-spacing: 0rem;
+  position: fixed;
+  right: 20px;
+  top: 110px;
+  word-spacing: 4px;
+}
+
+#aside-menu {
+  text-decoration: none;
+}
+
+#aside-menu li {
+  display: block;
+  height: 16px;
+  text-align: right;
+}
+
+#aside-menu li a {
+  color: black;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#aside-menu li a:hover {
+  text-decoration: underline;
+}
+
+#shop-feed-wrapper {
+  float: right;
+  font-size: 11px;
+  margin-top: 20px;
+  text-align: right;
+}
