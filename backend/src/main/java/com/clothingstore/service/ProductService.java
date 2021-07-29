@@ -109,6 +109,8 @@ public class ProductService {
             Category category = categoryRepository.findCategoryById(categoryId)
                     .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
             product.removeCategory(category);
+            productRepository.save(product);
+            categoryRepository.save(category);
         }
     }
 }
