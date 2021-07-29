@@ -27,7 +27,7 @@ public class ProductInfo {
 
     private String modelWeight;
 
-    @OneToOne(mappedBy = "productInfo", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "productInfo", cascade = CascadeType.PERSIST)
     @JsonBackReference
     private Product product;
 

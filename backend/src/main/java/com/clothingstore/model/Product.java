@@ -37,7 +37,7 @@ public class Product {
     @JsonManagedReference
     private List<Size> sizes = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_categories",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")})
@@ -52,6 +52,13 @@ public class Product {
         this.price = price;
         this.discount = discount;
         this.productInfo = productInfo;
+    }
+
+    public void setProductSize(Size size) {
+        if (!sizes.contains(size)) {
+            sizes.add(size);
+            size.setProduct(this);
+        }
     }
 
     public void addCategory(Category category) {

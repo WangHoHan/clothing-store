@@ -63,8 +63,7 @@ public class ProductService {
     public Size addSizeToProduct(Size size, Long id) {
         Product product = productRepository.findProductById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
-        size.setProduct(product);
-        product.getSizes().add(size);
+        product.setProductSize(size);
         return sizeRepository.save(size);
     }
 

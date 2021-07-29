@@ -31,7 +31,8 @@ public class SizeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Size> updateSize(@RequestBody Size size, @PathVariable("id") Long id) {
+    public ResponseEntity<Size> updateSize(@RequestBody Size size,
+                                           @PathVariable("id") Long id) {
         Size updatedSize = sizeService.updateSize(size, id);
         return new ResponseEntity<>(updatedSize, HttpStatus.OK);
     }

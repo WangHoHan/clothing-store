@@ -38,31 +38,37 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product, @RequestParam(required = false) List<Long> categories) {
+    public ResponseEntity<Product> addProduct(@RequestBody Product product,
+                                              @RequestParam(required = false) List<Long> categories) {
         Product newProduct = productService.addProduct(product, categories);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/size")
-    public ResponseEntity<Size> addSizeToProduct(@RequestBody Size size, @PathVariable("id") Long id) {
+    public ResponseEntity<Size> addSizeToProduct(@RequestBody Size size,
+                                                 @PathVariable("id") Long id) {
         Size newSize = productService.addSizeToProduct(size, id);
         return new ResponseEntity<>(newSize, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable("id") Long id) {
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product,
+                                                 @PathVariable("id") Long id) {
         Product updatedProduct = productService.updateProduct(product, id);
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
     @PutMapping("/{id}/size/{sizeId}")
-    public ResponseEntity<Product> updateProductSize(@RequestBody Size size, @PathVariable("id") Long id, @PathVariable("sizeId") Long sizeId) {
+    public ResponseEntity<Product> updateProductSize(@RequestBody Size size,
+                                                     @PathVariable("id") Long id,
+                                                     @PathVariable("sizeId") Long sizeId) {
         Product product = productService.updateProductSize(size, id, sizeId);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @PutMapping("{id}/category")
-    public ResponseEntity<Product> updateProductCategories(@PathVariable("id") Long id, @RequestParam List<Long> categories) {
+    public ResponseEntity<Product> updateProductCategories(@PathVariable("id") Long id,
+                                                           @RequestParam List<Long> categories) {
         Product productWithNewCategory = productService.updateProductCategories(id, categories);
         return new ResponseEntity<>(productWithNewCategory, HttpStatus.OK);
     }
@@ -74,7 +80,8 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}/category")
-    public ResponseEntity<?> deleteProductCategory(@PathVariable("id") Long id, @RequestParam List<Long> categories) {
+    public ResponseEntity<?> deleteProductCategory(@PathVariable("id") Long id,
+                                                   @RequestParam List<Long> categories) {
         productService.deleteProductCategories(id, categories);
         return new ResponseEntity<>(HttpStatus.OK);
     }
