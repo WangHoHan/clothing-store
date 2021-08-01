@@ -1,10 +1,14 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "ProductInfo")
@@ -21,8 +25,9 @@ public class ProductInfo {
 
     private String fabrics;
 
-    @Column(nullable = false)
-    private String image;
+    @OneToMany(mappedBy = "productInfo", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Image> images = new ArrayList<>();
 
     private String modelSize;
 
@@ -36,10 +41,9 @@ public class ProductInfo {
 
     public ProductInfo() {}
 
-    public ProductInfo(String color, String fabrics, String image, String modelSize, String modelHeight, String modelWeight) {
+    public ProductInfo(String color, String fabrics, String modelSize, String modelHeight, String modelWeight) {
         this.color = color;
         this.fabrics = fabrics;
-        this.image = image;
         this.modelSize = modelSize;
         this.modelHeight = modelHeight;
         this.modelWeight = modelWeight;
@@ -64,7 +68,6 @@ public class ProductInfo {
                 "id=" + id +
                 ", color='" + color + '\'' +
                 ", fabrics='" + fabrics + '\'' +
-                ", image='" + image + '\'' +
                 ", modelSize='" + modelSize + '\'' +
                 ", modelHeight='" + modelHeight + '\'' +
                 ", modelWeight='" + modelWeight + '\'' +
