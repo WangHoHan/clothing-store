@@ -1,14 +1,8 @@
 package com.clothingstore.service;
 
 import com.clothingstore.exception.ResourceNotFoundException;
-import com.clothingstore.model.Category;
-import com.clothingstore.model.Product;
-import com.clothingstore.model.ProductInfo;
-import com.clothingstore.model.Size;
-import com.clothingstore.repository.CategoryRepository;
-import com.clothingstore.repository.ProductInfoRepository;
-import com.clothingstore.repository.ProductRepository;
-import com.clothingstore.repository.SizeRepository;
+import com.clothingstore.model.*;
+import com.clothingstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +16,17 @@ public class ProductService {
 
     private final ProductInfoRepository productInfoRepository;
 
+    private final ImageRepository imageRepository;
+
     private final SizeRepository sizeRepository;
 
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, SizeRepository sizeRepository, CategoryRepository categoryRepository) {
+    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, ImageRepository imageRepository, SizeRepository sizeRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productInfoRepository = productInfoRepository;
+        this.imageRepository = imageRepository;
         this.sizeRepository = sizeRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -71,8 +68,6 @@ public class ProductService {
                 product.addCategory(category);
             }
         }
-        ProductInfo productInfo = product.getProductInfo();
-        productInfoRepository.save(productInfo);
         return productRepository.save(product);
     }
 
@@ -81,6 +76,14 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
         product.setProductSize(size);
         return sizeRepository.save(size);
+    }
+
+    public Image addImageToProduct(Image image, Long id) {
+        ProductInfo productInfo = productRepository.findProductById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"))
+                .getProductInfo();
+        productInfo.setProductImage(image);
+        return imageRepository.save(image);
     }
 
     public Product updateProductCategories(Long id, List<Long> categories) {

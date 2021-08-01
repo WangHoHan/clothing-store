@@ -1,13 +1,19 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "ProductInfo")
 @Table(name = "product_info")
-@Data
+@Getter
+@Setter
 public class ProductInfo {
 
     @Id
@@ -18,8 +24,9 @@ public class ProductInfo {
 
     private String fabrics;
 
-    @Column(nullable = false)
-    private String image;
+    @OneToMany(mappedBy = "productInfo", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Image> images = new ArrayList<>();
 
     private String modelSize;
 
@@ -27,18 +34,49 @@ public class ProductInfo {
 
     private String modelWeight;
 
-    @OneToOne(mappedBy = "productInfo", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "productInfo")
     @JsonBackReference
     private Product product;
 
     public ProductInfo() {}
 
-    public ProductInfo(String color, String fabrics, String image, String modelSize, String modelHeight, String modelWeight) {
+    public ProductInfo(String color, String fabrics, String modelSize, String modelHeight, String modelWeight) {
         this.color = color;
         this.fabrics = fabrics;
-        this.image = image;
         this.modelSize = modelSize;
         this.modelHeight = modelHeight;
         this.modelWeight = modelWeight;
+    }
+
+    public void setProductImage(Image image) {
+        if (!images.contains(image)) {
+            images.add(image);
+            image.setProductInfo(this);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductInfo that = (ProductInfo) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "ProductInfo{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", fabrics='" + fabrics + '\'' +
+                ", modelSize='" + modelSize + '\'' +
+                ", modelHeight='" + modelHeight + '\'' +
+                ", modelWeight='" + modelWeight + '\'' +
+                '}';
     }
 }
