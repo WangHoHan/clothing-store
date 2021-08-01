@@ -1,5 +1,6 @@
 package com.clothingstore.controller;
 
+import com.clothingstore.model.Image;
 import com.clothingstore.model.Product;
 import com.clothingstore.model.Size;
 import com.clothingstore.service.ProductService;
@@ -73,6 +74,13 @@ public class ProductController {
                                                  @PathVariable("id") Long id) {
         Size newSize = productService.addSizeToProduct(size, id);
         return new ResponseEntity<>(newSize, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<Image> addImageToProduct(@RequestBody Image image,
+                                                   @PathVariable("id") Long id) {
+        Image newImage = productService.addImageToProduct(image, id);
+        return new ResponseEntity<>(newImage, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

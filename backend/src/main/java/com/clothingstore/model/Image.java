@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity(name = "Image")
@@ -21,8 +20,8 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
-    private Byte[] file;
+    @Column(columnDefinition = "TEXT")
+    private String file;
 
     private String name;
 
@@ -48,7 +47,7 @@ public class Image {
     public String toString() {
         return "Image{" +
                 "id=" + id +
-                ", file=" + Arrays.toString(file) +
+                ", file='" + file + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

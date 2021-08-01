@@ -2,7 +2,6 @@ package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,6 +46,13 @@ public class ProductInfo {
         this.modelSize = modelSize;
         this.modelHeight = modelHeight;
         this.modelWeight = modelWeight;
+    }
+
+    public void setProductImage(Image image) {
+        if (!images.contains(image)) {
+            images.add(image);
+            image.setProductInfo(this);
+        }
     }
 
     @Override
