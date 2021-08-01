@@ -71,8 +71,6 @@ public class ProductService {
                 product.addCategory(category);
             }
         }
-        ProductInfo productInfo = product.getProductInfo();
-        productInfoRepository.save(productInfo);
         return productRepository.save(product);
     }
 

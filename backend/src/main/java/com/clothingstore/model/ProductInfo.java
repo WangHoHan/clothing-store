@@ -1,13 +1,16 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "ProductInfo")
 @Table(name = "product_info")
-@Data
+@Getter
+@Setter
 public class ProductInfo {
 
     @Id
@@ -27,7 +30,7 @@ public class ProductInfo {
 
     private String modelWeight;
 
-    @OneToOne(mappedBy = "productInfo", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "productInfo")
     @JsonBackReference
     private Product product;
 
@@ -40,5 +43,31 @@ public class ProductInfo {
         this.modelSize = modelSize;
         this.modelHeight = modelHeight;
         this.modelWeight = modelWeight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductInfo that = (ProductInfo) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "ProductInfo{" +
+                "id=" + id +
+                ", color='" + color + '\'' +
+                ", fabrics='" + fabrics + '\'' +
+                ", image='" + image + '\'' +
+                ", modelSize='" + modelSize + '\'' +
+                ", modelHeight='" + modelHeight + '\'' +
+                ", modelWeight='" + modelWeight + '\'' +
+                '}';
     }
 }

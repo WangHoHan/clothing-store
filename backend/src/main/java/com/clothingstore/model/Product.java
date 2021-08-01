@@ -1,14 +1,16 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity(name = "Product")
 @Table(name = "product")
-@Data
+@Getter
+@Setter
 public class Product {
 
     @Id
@@ -28,12 +30,12 @@ public class Product {
 
     private Double discount;
 
-    @OneToOne(optional = false, cascade = CascadeType.REMOVE)
+    @OneToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "product_info_id")
     @JsonManagedReference
     private ProductInfo productInfo;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
     private List<Size> sizes = new ArrayList<>();
 
@@ -41,7 +43,7 @@ public class Product {
     @JoinTable(name = "product_categories",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")})
-    private List<Category> categories = new ArrayList<>();
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {}
 
@@ -73,5 +75,31 @@ public class Product {
             categories.remove(category);
             category.getProducts().remove(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id.equals(product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", gender='" + gender + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", productInfo=" + productInfo +
+                '}';
     }
 }
