@@ -1,0 +1,11 @@
+#procucts-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.product-main-photo {
+  height: 450px;
+  margin: 20px 20px;
+}
