@@ -25,7 +25,6 @@ public class ProductInfo {
     private String fabrics;
 
     @OneToMany(mappedBy = "productInfo", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonIdentityReference(alwaysAsId = true)
     private List<Image> images = new ArrayList<>();
 
     private String modelSize;

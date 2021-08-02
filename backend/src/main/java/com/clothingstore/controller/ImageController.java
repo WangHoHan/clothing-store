@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/image")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ImageController {
 
     public final ImageService imageService;
