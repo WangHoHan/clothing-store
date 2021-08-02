@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpErrorResponse} from "@angular/common/http";
+import {Product} from "../../models/product";
+import {ProductService} from "../../services/product.service";
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  public products : Array<Product> = [];
+
+  constructor(private productService : ProductService) { }
+
+  public getProducts() : void {
+    this.productService.getProducts().subscribe(
+      (response : Array<Product>) => {
+        this.products = response;
+      },
+      (error : HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
   ngOnInit(): void {
+    this.getProducts();
   }
 
 }
