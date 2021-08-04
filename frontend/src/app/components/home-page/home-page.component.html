@@ -4,7 +4,7 @@
       <div class="product-info">{{product.name}}</div>
       <div class="product-info">[{{product.id}}]</div>
     </div>
-    <a [routerLink]="'product'">
+    <a [routerLink]="['product', product.id]">
       <img id="product-main-photo" [src]="product.productInfo.images[0].file"/>
     </a>
     <div id="product-additional-info-wrapper">
