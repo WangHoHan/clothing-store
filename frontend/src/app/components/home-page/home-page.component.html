@@ -1,6 +1,16 @@
 <div id="procucts-wrapper">
-  <div *ngFor="let product of products">
-    <img class="product-main-photo" [src]="product.productInfo.images[0].file"/>
+  <div *ngFor="let product of products; let i = index">
+    <div id="product-info-wrapper">
+      <div class="product-info">{{product.name}}</div>
+      <div class="product-info">[{{product.id}}]</div>
+    </div>
+    <a [routerLink]="'product'">
+      <img id="product-main-photo" [src]="product.productInfo.images[0].file"/>
+    </a>
+    <div id="product-additional-info-wrapper">
+      <div class="product-info">{{i}}</div>
+      <div class="product-info">Collection</div>
+    </div>
   </div>
 </div>
 

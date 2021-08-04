@@ -1,6 +1,6 @@
 import {Category} from "./category";
 import {ProductInfo} from "./product-info";
-import {Size} from "./size";
+import {Stock} from "./stock";
 
 export class Product {
   id : number;
@@ -10,11 +10,11 @@ export class Product {
   price : number;
   discount : number;
   productInfo : ProductInfo;
-  sizes : Array<Size>;
+  stock : Array<Stock>;
   category : Set<Category>;
 
   constructor(id : number, name : string, description : string, gender : string, price : number, discount : number,
-              productInfo : ProductInfo, sizes : Array<Size>, category : Set<Category>) {
+              productInfo : ProductInfo, stock : Array<Stock>, category : Set<Category>) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -22,7 +22,7 @@ export class Product {
     this.price = price;
     this.discount = discount;
     this.productInfo = productInfo;
-    this.sizes = sizes;
+    this.stock = stock;
     this.category = category;
   }
 }

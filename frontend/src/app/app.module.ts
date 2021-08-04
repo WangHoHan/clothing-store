@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MatMenuModule } from "@angular/material/menu";
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatMenuModule } from "@angular/material/menu";
     FooterComponent,
     // HomePageComponent
     NavigationComponent,
-    routingComponents
+    routingComponents,
+    ProductPageComponent
   ],
     imports: [
       AppRoutingModule,

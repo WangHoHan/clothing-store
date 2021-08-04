@@ -1,6 +1,6 @@
 import {Product} from "./product";
 
-export class Size {
+export class Stock {
   id : number;
   sizeTag : string;
   measurements : string;
