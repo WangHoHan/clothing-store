@@ -2,7 +2,7 @@ package com.clothingstore.controller;
 
 import com.clothingstore.model.Image;
 import com.clothingstore.model.Product;
-import com.clothingstore.model.Size;
+import com.clothingstore.model.Stock;
 import com.clothingstore.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,10 +33,10 @@ public class ProductController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/size")
-    public ResponseEntity<List<Size>> getProductSizes(@PathVariable("id") Long id) {
-        List<Size> sizes = productService.findProductSizes(id);
-        return new ResponseEntity<>(sizes, HttpStatus.OK);
+    @GetMapping("/{id}/stock")
+    public ResponseEntity<List<Stock>> getProductStock(@PathVariable("id") Long id) {
+        List<Stock> productStock = productService.findProductStock(id);
+        return new ResponseEntity<>(productStock, HttpStatus.OK);
     }
 
     @GetMapping("/gender/{name}")
@@ -70,11 +70,11 @@ public class ProductController {
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{id}/size")
-    public ResponseEntity<Size> addSizeToProduct(@RequestBody Size size,
-                                                 @PathVariable("id") Long id) {
-        Size newSize = productService.addSizeToProduct(size, id);
-        return new ResponseEntity<>(newSize, HttpStatus.CREATED);
+    @PostMapping("/{id}/stock")
+    public ResponseEntity<Stock> addStockToProduct(@RequestBody Stock stock,
+                                                  @PathVariable("id") Long id) {
+        Stock newStock = productService.addStockToProduct(stock, id);
+        return new ResponseEntity<>(newStock, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/image")
@@ -91,11 +91,11 @@ public class ProductController {
         return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/size/{sizeId}")
-    public ResponseEntity<Product> updateProductSize(@RequestBody Size size,
+    @PutMapping("/{id}/stock/{stockId}")
+    public ResponseEntity<Product> updateProductStock(@RequestBody Stock stock,
                                                      @PathVariable("id") Long id,
-                                                     @PathVariable("sizeId") Long sizeId) {
-        Product product = productService.updateProductSize(size, id, sizeId);
+                                                     @PathVariable("stockId") Long stockId) {
+        Product product = productService.updateProductStock(stock, id, stockId);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 

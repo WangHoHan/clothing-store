@@ -32,18 +32,18 @@ INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m_4mOW39JFCA6U-j7W0wM1Qaeldm9skJdmpZDGCLBdqqUoCLl2pMvfDyciGpnd0b0o1khpQKRsYy0csige7fHssk-TSvdMYaCmMvAnhqVZK0Qn8z8NBqyLkArpVfwCiw2neoa81wmdZc6aDAMsdIyuvNcbELvzUrklQOA-O4ggX7vnPEM4Fy1Njdumcb8S4h1?width=768&height=1152&cropmode=none', 'hoodie', 4);
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4mAd28Y9CmLniQ-Do8-V4c4Nw2LcyfiMvLdt3EYYzliZXV6sHuW3fu7-W4mt3lVwNp4_nqW9FpNeTH9DaNa5Pirx-y0E1ukWyhwFFc4_AhPAk_jbAxFTIpwca9uDLbbBAqj1xNor6qtCGR10-dhEA5-PPnTWoF7Vks_vcAxFz7LV_om0kY3qFrHYt_okHDhZjw?width=768&height=1152&cropmode=none', 'hoodie 2', 4);
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m5aBiD0WXyZlYKI8_U3eG7zT4mVaMNeqdyQ4Bwpjw_B2dXoCui4MbxOfveAKNsBk_q-oWus-lkUbhy26L1IAj_FJlfwHfd2POjsVYaRUdKN6-2TEJ6kEDLHlfPyB4asCTrn0nQS15ZV0TipOTsOYTHaSVqophgxPoTzKaFfVVc_eadhfQzKO6Q84OEmdSWr1H?width=768&height=1152&cropmode=none', 'hoodie 3', 4);
-INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m5aBiD0WXyZlYKI8_U3eG7zT4mVaMNeqdyQ4Bwpjw_B2dXoCui4MbxOfveAKNsBk_q-oWus-lkUbhy26L1IAj_FJlfwHfd2POjsVYaRUdKN6-2TEJ6kEDLHlfPyB4asCTrn0nQS15ZV0TipOTsOYTHaSVqophgxPoTzKaFfVVc_eadhfQzKO6Q84OEmdSWr1H?width=768&height=1152&cropmode=none', 'bomber', 5);
+INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m-cpdogTXQ64ey-gj7DPmipEhzsTyPRuerKy6lMtkS6Mq2eUY0uiBfa6PSGW1xx1NkO05tc7QC-Rx3i2iq3LKYQCnj6NpZzMo1kKO3OSkjsiAQkwOI9mHFlS2IpMEdvnw3CuSu7aYWbg60dGU39KqBCBLSblTJXLe0ZkdOO77gNNQz2K4IR5gAhvQT-Atrj0L?width=768&height=1152&cropmode=none', 'bomber', 5);
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4mKVsjf-56fAxfDKf-iqFNks6SHo_jXp8okziYCkp3R8HzK6ZP9dMadDLxhGSC7CIl2R1XFpCzpr9AlGpeO36XjsbayXtBvw_4872VBZuXHoCDZW_fhwtH4cxT-tUkHLhgTokxrQsL4G7XukvJj9zbDrPxjsIBJ5I7HncBxXyDSSH9U2rEOJsi4XadYf8YhHac?width=768&height=1152&cropmode=none', 'bomber 2', 5);
 
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 20, 'M', 1);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 50, 'L', 1);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 20, 'S', 2);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 10, 'L', 2);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 25, '32', 3);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 40, 'M', 4);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 100, 'XL', 4);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 5, 'S', 5);
-INSERT INTO size (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 5, 'XXL', 5);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 20, 'M', 1);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 50, 'L', 1);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 20, 'S', 2);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 10, 'L', 2);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 25, '32', 3);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 40, 'M', 4);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 100, 'XL', 4);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 5, 'S', 5);
+INSERT INTO stock (measurements, quantity, size_tag, product_id) VALUES ('20x20x20', 5, 'XXL', 5);
 
 INSERT INTO product_categories (product_id, category_id) VALUES (1, 2);
 INSERT INTO product_categories (product_id, category_id) VALUES (2, 4);

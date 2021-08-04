@@ -7,11 +7,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity(name = "Size")
-@Table(name = "size")
+@Entity(name = "Stock")
+@Table(name = "stock")
 @Getter
 @Setter
-public class Size {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,9 @@ public class Size {
     @JsonBackReference
     private Product product;
 
-    public Size() {}
+    public Stock() {}
 
-    public Size(String sizeTag, String measurements, Integer quantity, Product product) {
+    public Stock(String sizeTag, String measurements, Integer quantity, Product product) {
         this.sizeTag = sizeTag;
         this.measurements = measurements;
         this.quantity = quantity;
@@ -41,8 +41,8 @@ public class Size {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Size size = (Size) o;
-        return id.equals(size.id);
+        Stock stock = (Stock) o;
+        return id.equals(stock.id);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Size {
 
     @Override
     public String toString() {
-        return "Size{" +
+        return "Stock{" +
                 "id=" + id +
                 ", sizeTag='" + sizeTag + '\'' +
                 ", measurements='" + measurements + '\'' +

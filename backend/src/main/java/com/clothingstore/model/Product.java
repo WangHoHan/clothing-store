@@ -1,5 +1,6 @@
 package com.clothingstore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,13 +38,17 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
-    private List<Size> sizes = new ArrayList<>();
+    private List<Stock> stock = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "product_categories",
             joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")})
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    @JsonBackReference
+    private List<OrderContent> orderContentList = new ArrayList<>();
 
     public Product() {}
 
@@ -56,10 +61,10 @@ public class Product {
         this.productInfo = productInfo;
     }
 
-    public void setProductSize(Size size) {
-        if (!sizes.contains(size)) {
-            sizes.add(size);
-            size.setProduct(this);
+    public void setProductStock(Stock stock) {
+        if (!this.stock.contains(stock)) {
+            this.stock.add(stock);
+            stock.setProduct(this);
         }
     }
 

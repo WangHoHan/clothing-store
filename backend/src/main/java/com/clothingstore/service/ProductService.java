@@ -18,16 +18,16 @@ public class ProductService {
 
     private final ImageRepository imageRepository;
 
-    private final SizeRepository sizeRepository;
+    private final StockRepository stockRepository;
 
     private final CategoryRepository categoryRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, ImageRepository imageRepository, SizeRepository sizeRepository, CategoryRepository categoryRepository) {
+    public ProductService(ProductRepository productRepository, ProductInfoRepository productInfoRepository, ImageRepository imageRepository, StockRepository stockRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productInfoRepository = productInfoRepository;
         this.imageRepository = imageRepository;
-        this.sizeRepository = sizeRepository;
+        this.stockRepository = stockRepository;
         this.categoryRepository = categoryRepository;
     }
 
@@ -40,8 +40,8 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
     }
 
-    public List<Size> findProductSizes(Long id) {
-        return sizeRepository.findSizesByProductId(id);
+    public List<Stock> findProductStock(Long id) {
+        return stockRepository.findStockByProductId(id);
     }
 
     public List<Product> findProductsByGender(String name) {
@@ -71,11 +71,11 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Size addSizeToProduct(Size size, Long id) {
+    public Stock addStockToProduct(Stock stock, Long id) {
         Product product = productRepository.findProductById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
-        product.setProductSize(size);
-        return sizeRepository.save(size);
+        product.setProductStock(stock);
+        return stockRepository.save(stock);
     }
 
     public Image addImageToProduct(Image image, Long id) {
@@ -106,12 +106,12 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product updateProductSize(Size size, Long id, Long sizeId) {
-        size.setId(sizeId);
+    public Product updateProductStock(Stock stock, Long id, Long stockId) {
+        stock.setId(stockId);
         Product product = productRepository.findProductById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
-        size.setProduct(product);
-        sizeRepository.save(size);
+        stock.setProduct(product);
+        stockRepository.save(stock);
         return product;
     }
 
