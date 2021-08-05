@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Product} from "../../models/product";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ProductService} from "../../services/product.service";
 
 @Component({
   selector: 'app-product-page',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPageComponent implements OnInit {
 
-  constructor() { }
+  public product! : Product;
+
+  constructor(private route: ActivatedRoute, private productService : ProductService) { }
+
+  public getProduct(id : string) : void {
+    this.productService.getProduct(id).subscribe(
+      (response : Product) => {
+        this.product = response;
+      },
+      (error : HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.getProduct(id!);
   }
 
 }
