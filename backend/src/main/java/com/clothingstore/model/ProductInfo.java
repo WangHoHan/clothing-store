@@ -1,7 +1,6 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +18,8 @@ public class ProductInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String collection;
 
     private String color;
 

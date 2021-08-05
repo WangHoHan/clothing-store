@@ -37,7 +37,7 @@ public class Order {
     @JsonBackReference
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "shipping_id")
     @JsonManagedReference
     private ShippingInfo shippingInfo;
