@@ -72,7 +72,7 @@ public class ProductController {
 
     @PostMapping("/{id}/stock")
     public ResponseEntity<Stock> addStockToProduct(@RequestBody Stock stock,
-                                                  @PathVariable("id") Long id) {
+                                                   @PathVariable("id") Long id) {
         Stock newStock = productService.addStockToProduct(stock, id);
         return new ResponseEntity<>(newStock, HttpStatus.CREATED);
     }
@@ -93,8 +93,8 @@ public class ProductController {
 
     @PutMapping("/{id}/stock/{stockId}")
     public ResponseEntity<Product> updateProductStock(@RequestBody Stock stock,
-                                                     @PathVariable("id") Long id,
-                                                     @PathVariable("stockId") Long stockId) {
+                                                      @PathVariable("id") Long id,
+                                                      @PathVariable("stockId") Long stockId) {
         Product product = productService.updateProductStock(stock, id, stockId);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

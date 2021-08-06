@@ -1,6 +1,6 @@
 package com.clothingstore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +24,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "product_info_id")
-    @JsonBackReference
+    @JsonIgnore
     private ProductInfo productInfo;
 
     @Override

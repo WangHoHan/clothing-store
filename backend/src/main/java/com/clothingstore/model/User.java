@@ -33,12 +33,10 @@ public class User {
 
     private String accountType;
 
-    @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<ShippingInfo> shippingInfoList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
     private List<Order> orders = new ArrayList<>();
 
     public User() {}
@@ -50,6 +48,20 @@ public class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.accountType = accountType;
+    }
+
+    public void addShippingInfo(ShippingInfo shippingInfo) {
+        if (!this.shippingInfoList.contains(shippingInfo)) {
+            this.shippingInfoList.add(shippingInfo);
+            shippingInfo.setUser(this);
+        }
+    }
+
+    public void setUserOrder(Order order) {
+        if (!this.orders.contains(order)) {
+            this.orders.add(order);
+            order.setUser(this);
+        }
     }
 
     @Override
