@@ -16,8 +16,7 @@ import java.util.Set;
        })
 @Getter
 @Setter
-public class
-Category {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

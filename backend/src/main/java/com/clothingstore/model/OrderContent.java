@@ -1,6 +1,6 @@
 package com.clothingstore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,12 +20,11 @@ public class OrderContent {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    @JsonBackReference
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonManagedReference
     private Product product;
 
     private String size;

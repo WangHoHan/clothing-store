@@ -1,6 +1,7 @@
 package com.clothingstore.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,16 +35,14 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonIgnore
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "shipping_id")
-    @JsonManagedReference
     private ShippingInfo shippingInfo;
 
-    @OneToMany(mappedBy = "order")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderContent> orderContentList = new ArrayList<>();
 
     public Order() {}

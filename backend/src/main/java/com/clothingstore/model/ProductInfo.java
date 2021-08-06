@@ -1,7 +1,6 @@
 package com.clothingstore.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +19,8 @@ public class ProductInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String collection;
+
     private String color;
 
     private String fabrics;
@@ -34,7 +35,7 @@ public class ProductInfo {
     private String modelWeight;
 
     @OneToOne(mappedBy = "productInfo")
-    @JsonBackReference
+    @JsonIgnore
     private Product product;
 
     public ProductInfo() {}
