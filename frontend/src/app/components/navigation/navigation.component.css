@@ -40,6 +40,7 @@ button:hover {
 }
 
 #search-bar {
+  background: transparent;
   border: 0px;
   text-align: right;
   font-family: 'Lora', serif;

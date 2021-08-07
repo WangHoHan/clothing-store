@@ -1,0 +1,156 @@
+#product-page-wrapper {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+#product-info-wrapper {
+  position: fixed;
+  top: 200px;
+  left: 20px;
+}
+
+#product-name {
+  font-family: 'Bookish', -apple-system;
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  text-transform: none;
+}
+
+#product-price {
+  font-family: 'Bookish', -apple-system;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  text-transform: none;
+}
+
+#product-description {
+  font-size: 12px;
+  margin-bottom: 20px;
+  text-transform: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#button-product-color {
+  background-color: black;
+  border: 0px;
+  border-radius: 5px;
+  color: transparent;
+  margin-bottom: 25px;
+  margin-top: 4px;
+  height: 34px;
+  padding: 0px 0px;
+  text-transform: uppercase;
+  width: 34px;
+}
+
+#product-size {
+  display: inline-flex;
+}
+
+#button-product-size {
+  border: 0px;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  height: 40px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 0px 0px;
+  text-transform: uppercase;
+  width: 32px;
+}
+
+#button-product-size:hover {
+  background-color: grey;
+  color: white;
+}
+
+#size-help {
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  margin-top: 4px;
+  text-decoration: underline;
+  text-transform: none;
+  word-spacing: 2px;
+}
+
+#size-help:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#action-buttons-wrapper {
+  margin-bottom: 58px;
+  margin-top: 6px;
+}
+
+#button-add-to-bag {
+  background-color: navy;
+  border: 0px;
+  border-radius: 3px;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  margin-right: 7px;
+  padding: 8px 18px;
+  text-transform: uppercase;
+}
+
+#button-add-to-bag:hover {
+  background-color: royalblue;
+}
+
+#button-save-to-wishlist {
+  border: 0px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 8px 13px;
+  text-transform: uppercase;
+}
+
+#button-save-to-wishlist:hover {
+  background-color: grey;
+  color: white;
+}
+
+#additional-info {
+  letter-spacing: 0rem;
+  word-spacing: 4px;
+}
+
+#additional-info ul {
+  padding-left: 0px;
+}
+
+#additional-info ul li {
+  display: block;
+  height: 16px;
+}
+
+#additional-info ul li a {
+  color: black;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+#additional-info ul li a:hover {
+  text-decoration: underline;
+}
+
+#product-photos-wrapper {
+  float: right;
+  position: relative;
+  right: 250px;
+  top: -350px;
+  z-index: -1;
+}
+
+#product-photos {
+  height: 1000px;
+}
