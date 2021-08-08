@@ -1,0 +1,119 @@
+#shopping-bag-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#products-wrapper {
+  margin-left: 20px;
+  width: 710px;
+}
+
+#products-header {
+  display: flex;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  justify-content: space-between;
+  margin: 0px 10px;
+}
+
+#product-wrapper {
+  display: inline-flex;
+  margin-bottom: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#product-main-photo {
+  height: 500px;
+}
+
+#product-name {
+  font-family: 'Bookish', -apple-system;
+  font-size: 16px;
+  text-transform: none;
+}
+
+#product-price {
+  font-family: 'Bookish', -apple-system;
+  font-size: 16px;
+  text-transform: none;
+}
+
+.product-actions {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  margin-top: 16px;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+.product-actions:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.product-info {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+}
+
+#order-summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  margin-right: 250px;
+  text-transform: uppercase;
+  width: 560px;
+}
+
+#order-summary {
+  margin-bottom: 40px;
+}
+
+.money-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+#button-checkout {
+  background-color: chocolate;
+  border: 0px;
+  border-radius: 3px;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  margin-bottom: 55px;
+  margin-right: 7px;
+  margin-top: 30px;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  width: 140px;
+}
+
+#button-checkout:hover {
+  background-color: burlywood;
+  cursor: pointer;
+}
+
+#order-help {
+  font-size: 12px;
+}
+
+#order-help ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+#order-help ul li {
+  border-bottom: solid 1px;
+  border-top: solid 1px;
+  border-color: black;
+  margin-bottom: -1px;
+  padding: 2px 0px;
+}
+
+#order-help ul li a {
+  color: black;
+  text-decoration: none;
+}

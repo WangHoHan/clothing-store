@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
   ],
     imports: [
       AppRoutingModule,

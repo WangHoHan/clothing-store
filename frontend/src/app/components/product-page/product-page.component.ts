@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../models/product";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ProductService} from "../../services/product.service";
+import {ShoppingBagService} from "../../services/shopping-bag.service";
 
 @Component({
   selector: 'app-product-page',
@@ -13,7 +14,7 @@ export class ProductPageComponent implements OnInit {
 
   public product! : Product;
 
-  constructor(private route: ActivatedRoute, private productService : ProductService) { }
+  constructor(private route: ActivatedRoute, private productService : ProductService, private shoppingBagSerive : ShoppingBagService) { }
 
   public getProduct(id : string) : void {
     this.productService.getProduct(id).subscribe(
@@ -24,6 +25,10 @@ export class ProductPageComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  public addProductToShoppingBag() {
+    this.shoppingBagSerive.addProcuctToShoppingBag(this.product);
   }
 
   ngOnInit(): void {
