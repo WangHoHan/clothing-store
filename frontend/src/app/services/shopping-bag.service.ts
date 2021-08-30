@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../models/product";
@@ -22,11 +22,11 @@ export class ShoppingBagService {
     this._shoppingBag = value;
   }
 
-  public addProcuctToShoppingBag(value: Product) : void {
+  public addProductToShoppingBag(value: Product) : void {
     this._shoppingBag.push(value);
   }
 
-  public getShoppingBag() : Array<Product> {
+  public getShoppingBag() {
     return this._shoppingBag;
   }
 }

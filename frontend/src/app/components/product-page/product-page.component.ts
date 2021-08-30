@@ -28,7 +28,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   public addProductToShoppingBag() {
-    this.shoppingBagSerive.addProcuctToShoppingBag(this.product);
+    this.shoppingBagSerive.addProductToShoppingBag(this.product);
   }
 
   ngOnInit(): void {
