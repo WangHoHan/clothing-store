@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {Product} from "../models/product";
 
 @Injectable({
@@ -23,10 +22,17 @@ export class ShoppingBagService {
   }
 
   public addProductToShoppingBag(value: Product) : void {
+    if (localStorage.getItem("shoppingBag") != null) {
+      this._shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+    }
     this._shoppingBag.push(value);
+    localStorage.setItem("shoppingBag", JSON.stringify(this._shoppingBag));
   }
 
   public getShoppingBag() {
+    if (localStorage.getItem("shoppingBag") != null) {
+      this._shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+    }
     return this._shoppingBag;
   }
 }
