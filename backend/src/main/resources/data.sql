@@ -51,8 +51,8 @@ INSERT INTO product_categories (product_id, category_id) VALUES (3, 6);
 INSERT INTO product_categories (product_id, category_id) VALUES (4, 8);
 INSERT INTO product_categories (product_id, category_id) VALUES (5, 9);
 
-INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('jamessmith@example.com', 'password123', 'James', 'Smith', '987654321', 'admin');
-INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('johndoe@example.com', 'password123', 'John', 'Doe', '123456789', 'customer');
+INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('jamessmith@example.com', 'password123', 'James', 'Smith', '987654321', 'ROLE_ADMIN');
+INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('johndoe@example.com', 'password123', 'John', 'Doe', '123456789', 'ROLE_CUSTOMER');
 
 INSERT INTO shipping_info (first_name, last_name, line1, postal_code, city, phone_number, user_id) VALUES ('James', 'Smith', '3734 Cambridge Place', '21784', 'Chicago', '987654321', 1);
 INSERT INTO shipping_info (first_name, last_name, line1, line2, postal_code, city, phone_number, user_id) VALUES ('John', 'Doe', '4854 Kessla Way', 'apt 11', '29114', 'Miami', '123456789', 2);

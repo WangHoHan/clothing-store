@@ -5,13 +5,19 @@ import com.clothingstore.model.ShippingInfo;
 import com.clothingstore.model.User;
 import com.clothingstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -27,6 +33,14 @@ public class UserService {
     public User findUserById(Long id) {
         return userRepository.findUserById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " not found"));
+        List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getAccountType().name()));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
     }
 
     public User addUser(User user) {
