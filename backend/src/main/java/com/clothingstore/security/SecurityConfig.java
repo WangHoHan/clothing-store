@@ -1,6 +1,7 @@
 package com.clothingstore.security;
 
 import com.clothingstore.security.filter.AuthenticationFilter;
+import com.clothingstore.security.jwt.TokenCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenCreator tokenCreator;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().anyRequest().permitAll()
                 .and()
-                .addFilter(new AuthenticationFilter(authenticationManagerBean()));
+                .addFilter(new AuthenticationFilter(authenticationManagerBean(), tokenCreator));
     }
 
     @Bean

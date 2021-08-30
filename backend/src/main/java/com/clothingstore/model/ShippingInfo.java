@@ -42,7 +42,15 @@ public class ShippingInfo {
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
-    public ShippingInfo() {}
+    public ShippingInfo(String firstName, String lastName, String line1, String line2, String postalCode, String city, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.line1 = line1;
+        this.line2 = line2;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public boolean equals(Object o) {

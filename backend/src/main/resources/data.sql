@@ -51,16 +51,18 @@ INSERT INTO product_categories (product_id, category_id) VALUES (3, 6);
 INSERT INTO product_categories (product_id, category_id) VALUES (4, 8);
 INSERT INTO product_categories (product_id, category_id) VALUES (5, 9);
 
+/*
 INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('jamessmith@example.com', 'password123', 'James', 'Smith', '987654321', 'ROLE_ADMIN');
 INSERT INTO customer (email, password, first_name, last_name, phone_number, account_type) VALUES ('johndoe@example.com', 'password123', 'John', 'Doe', '123456789', 'ROLE_CUSTOMER');
 
 INSERT INTO shipping_info (first_name, last_name, line1, postal_code, city, phone_number, user_id) VALUES ('James', 'Smith', '3734 Cambridge Place', '21784', 'Chicago', '987654321', 1);
 INSERT INTO shipping_info (first_name, last_name, line1, line2, postal_code, city, phone_number, user_id) VALUES ('John', 'Doe', '4854 Kessla Way', 'apt 11', '29114', 'Miami', '123456789', 2);
 INSERT INTO shipping_info (first_name, last_name, line1, postal_code, city, phone_number, user_id) VALUES ('John', 'Doe', '1073 Ashcraft Court', '92041', 'Orlando', '123456789', 2);
+
 INSERT INTO shipping_info (first_name, last_name, line1, postal_code, phone_number, city) VALUES ('Sarah', 'Williams', '2861 Owen Lane', '44308', '111222333', 'Houston');
 
 INSERT INTO purchase_order (state, tracking, shipping_method, payment_method, total, paid, shipping_id, user_id) VALUES ('in transit', 'RA655750668US', 'express', 'PayPal', 75.59, true, 2, 2);
 INSERT INTO purchase_order (state, shipping_method, payment_method, total, paid, shipping_id) VALUES ('accepted', 'standard', 'charges forward', 45.49, false, 4);
 
 INSERT INTO order_content (order_id, product_id, size, quantity) VALUES (1, 2, 'L', 1);
-INSERT INTO order_content (order_id, product_id, size, quantity) VALUES (2, 1, 'M', 2);
+INSERT INTO order_content (order_id, product_id, size, quantity) VALUES (2, 1, 'M', 2);*/
