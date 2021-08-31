@@ -34,6 +34,12 @@ public class OrderController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
+    @GetMapping("/user/{email}")
+    public ResponseEntity<List<Order>> getUserOrders(@PathVariable("email") String email) {
+        List<Order> orders = orderService.findUserOrders(email);
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Order> placeOrder(@RequestBody Order order,
                                             @RequestParam(required = false) Long userId,

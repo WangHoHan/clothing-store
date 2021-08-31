@@ -36,6 +36,11 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
     }
 
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User with email " + email + " not found"));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(email)
@@ -52,6 +57,13 @@ public class UserService implements UserDetailsService {
     public User addShippingInfoToUser(ShippingInfo shippingInfo, Long id) {
         User user = userRepository.findUserById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
+        user.addShippingInfo(shippingInfo);
+        return userRepository.save(user);
+    }
+
+    public User addShippingInfoToUserByEmail(ShippingInfo shippingInfo, String email) {
+        User user = userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User with email " + email + " not found"));
         user.addShippingInfo(shippingInfo);
         return userRepository.save(user);
     }

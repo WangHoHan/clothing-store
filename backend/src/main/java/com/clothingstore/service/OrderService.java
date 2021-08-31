@@ -45,6 +45,10 @@ public class OrderService {
                 .orElseThrow(() -> new ResourceNotFoundException("Order with id " + id + " not found"));
     }
 
+    public List<Order> findUserOrders(String email) {
+        return orderRepository.findAllByUserEmail(email);
+    }
+
     public Order placeOrder(Order order, Long userId, Boolean saveNewShippingInfo) {
         if (order.getShippingInfo() == null) {
             throw new InvalidRequestException("Missing shipping information");

@@ -32,10 +32,24 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = userService.findUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
     @PostMapping("/{id}/shippingInfo")
     public ResponseEntity<User> addShippingInfoToUser(@RequestBody ShippingInfo shippingInfo,
                                                       @PathVariable("id") Long id) {
         User user = userService.addShippingInfoToUser(shippingInfo, id);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{email}/shippingInfo")
+    public ResponseEntity<User> addShippingInfoToUserByEmail(@RequestBody ShippingInfo shippingInfo,
+                                                             @PathVariable("email") String email) {
+        User user = userService.addShippingInfoToUserByEmail(shippingInfo, email);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
