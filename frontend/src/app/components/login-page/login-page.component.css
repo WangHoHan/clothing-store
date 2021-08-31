@@ -1,0 +1,78 @@
+#login-page-wrapper {
+  display: inline-flex;
+}
+
+#sign-in-wrapper {
+  margin-left: 20px;
+  margin-right: 150px;
+  width: 440px;
+}
+
+.sign-register-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+.form-option {
+  margin-bottom: 20px;
+}
+
+.form-option label {
+  color: grey;
+  font-size: 9px;
+}
+
+.input-text {
+  background-color: cornsilk;
+  border: 0px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  height: 45px;
+  padding-left: 13px;
+  vertical-align: center;
+  width: 100%;
+}
+
+#input-text:focus {
+  outline: none;
+}
+
+#form-checkbox label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  margin-left: 5px;
+  text-transform: none;
+}
+
+#password-reset {
+  float: right;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-decoration: underline;
+  text-transform: none;
+}
+
+#password-reset:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#form-login-submit {
+  background-color: crimson;
+  border: 0px;
+  border-radius: 3px;
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  margin-top: 25px;
+  padding: 8px 13px;
+  text-transform: uppercase;
+}
+
+#form-login-submit:hover {
+  background-color: chocolate;
+  cursor: pointer;
+  text-decoration: underline;
+}
