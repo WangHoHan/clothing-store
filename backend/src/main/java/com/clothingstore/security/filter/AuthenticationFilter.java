@@ -35,10 +35,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
-        String issuer = request.getRequestURL().toString();
         String authority = user.getAuthorities().toArray()[0].toString();
-        String accessToken = tokenCreator.createAccessToken(user.getUsername(), issuer, authority);
-        String refreshToken = tokenCreator.createRefreshToken(user.getUsername(), issuer);
+        String accessToken = tokenCreator.createAccessToken(user.getUsername(), authority);
+        String refreshToken = tokenCreator.createRefreshToken(user.getUsername());
         response.setHeader("access_token", accessToken);
         response.setHeader("refresh_token", refreshToken);
     }

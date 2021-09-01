@@ -17,20 +17,18 @@ public class TokenCreator {
         this.algorithm = Algorithm.HMAC256(jwtConfig.getSecret().getBytes());
     }
 
-    public String createAccessToken(String username, String issuer, String authority) {
+    public String createAccessToken(String username, String authority) {
         return JWT.create()
                 .withSubject(username)
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtConfig.getAccessTokenExpirationTime()))
-                .withIssuer(issuer)
                 .withClaim("role", authority)
                 .sign(algorithm);
     }
 
-    public String createRefreshToken(String username, String issuer) {
+    public String createRefreshToken(String username) {
         return JWT.create()
                 .withSubject(username)
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtConfig.getRefreshTokenExpirationTime()))
-                .withIssuer(issuer)
                 .sign(algorithm);
     }
 }

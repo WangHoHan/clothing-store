@@ -5,6 +5,7 @@ import com.clothingstore.model.User;
 import com.clothingstore.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{email}")
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
         User user = userService.findUserByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -40,6 +42,7 @@ public class UserController {
     }
 
     @PostMapping("/{email}/shippingInfo")
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<User> addShippingInfoToUserByEmail(@RequestBody ShippingInfo shippingInfo,
                                                              @PathVariable("email") String email) {
         User user = userService.addShippingInfoToUserByEmail(shippingInfo, email);
