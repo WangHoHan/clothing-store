@@ -56,13 +56,14 @@ footer {
 
 #newsletter {
   float: right;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   margin-top: 50px;
   letter-spacing: 1px;
   line-height: 1.3;
   text-transform: none;
   width: 380px;
-  word-spacing: 2px;
+  word-spacing: 0px;
 }
 
 #newsletter span{

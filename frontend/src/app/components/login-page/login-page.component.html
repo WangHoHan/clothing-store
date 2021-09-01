@@ -8,15 +8,66 @@
       <div class="form-option">
         <input class="input-text" type="password" placeholder="Password">
       </div>
-      <div id="form-checkbox">
+      <div id="form-checkbox-login">
         <input type="checkbox" id="stay-signed-in">
         <label for="stay-signed-in">Stay signed in</label>
         <div id="password-reset">I forgot my password</div>
       </div>
     </form>
-    <button id="form-login-submit" type="submit" form="form-login" value="Submit">SIGN IN</button>
+    <button class="form-submit" type="submit" form="form-login" value="SIGN IN">SIGN IN</button>
   </div>
   <div id="register-wrapper">
     <div class="sign-register-header">REGISTER A NEW ACCOUNT</div>
+    <form id="form-register">
+      <div class="form-option">
+        <select id="select-gender" name="gender">
+          <option value="--">--</option>
+          <option value="Mr.">Mr.</option>
+          <option value="Ms.">Ms.</option>
+        </select>
+      </div>
+      <div class="form-option">
+        <input class="input-text" type="text" placeholder="First Name">
+      </div>
+      <div class="form-option">
+        <input class="input-text" type="text" placeholder="Last Name">
+      </div>
+      <div class="form-option">
+        <input class="input-text" type="email" placeholder="Email Address">
+      </div>
+      <div class="form-option">
+        <input class="input-text" type="password" placeholder="Password">
+      </div>
+      <div class="form-option">
+        <input class="input-text" type="password" placeholder="Confirm Password">
+      </div>
+      <div class="form-option">
+        <select id="select-country" name="gender">
+          <option value="Poland">Poland</option>
+        </select>
+      </div>
+      <div id="date-wrapper">
+        <div class="form-option-date">
+          <select class="date-piece" name="day">
+          </select>
+        </div>
+        <div class="form-option-date">
+          <select class="date-piece" name="month">
+          </select>
+        </div>
+        <div class="form-option-date">
+          <select class="date-piece" name="year">
+          </select>
+        </div>
+      </div>
+      <div id="form-checkbox-newsletter">
+        <input type="checkbox" id="newsletter">
+        <label for="newsletter">SUBSCRIBE TO NEWSLETTER</label>
+      </div>
+    </form>
+    <div id="terms-and-conditions">
+      By registering you agree to accept the <a href="#">Terms & Conditions</a> and have read the <a href="#">Privacy Policy</a>.
+    </div>
+    <button class="form-submit" type="submit" form="form-register" value="CREATE ACCOUNT">CREATE ACCOUNT</button>
   </div>
 </div>

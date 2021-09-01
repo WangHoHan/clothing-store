@@ -35,11 +35,11 @@
   width: 100%;
 }
 
-#input-text:focus {
+.input-text:focus {
   outline: none;
 }
 
-#form-checkbox label {
+#form-checkbox-login label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   margin-left: 5px;
@@ -59,7 +59,7 @@
   text-decoration: none;
 }
 
-#form-login-submit {
+.form-submit {
   background-color: crimson;
   border: 0px;
   border-radius: 3px;
@@ -71,8 +71,93 @@
   text-transform: uppercase;
 }
 
-#form-login-submit:hover {
+.form-submit:hover {
   background-color: chocolate;
   cursor: pointer;
   text-decoration: underline;
 }
+
+#register-wrapper {
+  width: 440px;
+}
+
+#select-gender {
+  background-color: cornsilk;
+  border: 0px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  height: 45px;
+  padding-left: 13px;
+  vertical-align: center;
+  width: 103%;
+}
+
+#select-gender:focus {
+  outline: none;
+}
+
+#select-country {
+  background-color: cornsilk;
+  border: 0px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  height: 45px;
+  padding-left: 13px;
+  vertical-align: center;
+  width: 103%;
+}
+
+#select-country:focus {
+  outline: none;
+}
+
+#date-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.date-piece {
+  background-color: cornsilk;
+  border: 0px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  height: 45px;
+  padding-left: 13px;
+  vertical-align: center;
+  width: 142px;
+}
+
+#form-checkbox-newsletter {
+  margin-top: 32px;
+}
+
+#form-checkbox-newsletter label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  margin-left: 5px;
+  text-transform: none;
+}
+
+#terms-and-conditions {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  margin-top: 40px;
+  text-transform: none;
+  word-spacing: 0px;
+}
+
+#terms-and-conditions a {
+  color: black;
+  text-decoration: underline;
+}
+
+#terms-and-conditions a:hover {
+  text-decoration: none;
+}
+
