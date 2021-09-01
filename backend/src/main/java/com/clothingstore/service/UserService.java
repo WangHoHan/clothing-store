@@ -5,6 +5,7 @@ import com.clothingstore.model.ShippingInfo;
 import com.clothingstore.model.User;
 import com.clothingstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,11 +32,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User findUserById(Long id) {
-        return userRepository.findUserById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User with id " + id + " not found"));
-    }
-
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User with email " + email + " not found"));
@@ -61,6 +58,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
     public User addShippingInfoToUserByEmail(ShippingInfo shippingInfo, String email) {
         User user = userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("User with email " + email + " not found"));

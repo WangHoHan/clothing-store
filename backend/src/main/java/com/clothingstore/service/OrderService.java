@@ -11,6 +11,7 @@ import com.clothingstore.repository.OrderRepository;
 import com.clothingstore.repository.ShippingInfoRepository;
 import com.clothingstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -40,11 +41,13 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findOrderById(Long id) {
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
+    public Order findOrderById(Long id, String email) {
         return orderRepository.findOrderById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order with id " + id + " not found"));
     }
 
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
     public List<Order> findUserOrders(String email) {
         return orderRepository.findAllByUserEmail(email);
     }

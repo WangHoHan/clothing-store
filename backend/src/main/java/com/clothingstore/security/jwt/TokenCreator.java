@@ -2,7 +2,6 @@ package com.clothingstore.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -10,22 +9,18 @@ import java.util.Date;
 @Component
 public class TokenCreator {
 
+    private final JwtConfig jwtConfig;
     private final Algorithm algorithm;
-    private final Long accessTokenExpirationTime;
-    private final Long refreshTokenExpirationTime;
 
-    public TokenCreator(@Value("${jwt.secret}") String secret,
-                        @Value("${jwt.accessTokenExpirationTime}") Long accessTokenExpirationTime,
-                        @Value("${jwt.refreshTokenExpirationTime}") Long refreshTokenExpirationTime) {
-        this.algorithm = Algorithm.HMAC256(secret.getBytes());
-        this.accessTokenExpirationTime = accessTokenExpirationTime;
-        this.refreshTokenExpirationTime = refreshTokenExpirationTime;
+    public TokenCreator(JwtConfig jwtConfig) {
+        this.jwtConfig = jwtConfig;
+        this.algorithm = Algorithm.HMAC256(jwtConfig.getSecret().getBytes());
     }
 
     public String createAccessToken(String username, String issuer, String authority) {
         return JWT.create()
                 .withSubject(username)
-                .withExpiresAt(new Date(System.currentTimeMillis() + accessTokenExpirationTime))
+                .withExpiresAt(new Date(System.currentTimeMillis() + jwtConfig.getAccessTokenExpirationTime()))
                 .withIssuer(issuer)
                 .withClaim("role", authority)
                 .sign(algorithm);
@@ -34,7 +29,7 @@ public class TokenCreator {
     public String createRefreshToken(String username, String issuer) {
         return JWT.create()
                 .withSubject(username)
-                .withExpiresAt(new Date(System.currentTimeMillis() + refreshTokenExpirationTime))
+                .withExpiresAt(new Date(System.currentTimeMillis() + jwtConfig.getRefreshTokenExpirationTime()))
                 .withIssuer(issuer)
                 .sign(algorithm);
     }

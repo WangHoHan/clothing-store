@@ -6,7 +6,6 @@ import com.clothingstore.model.ShippingInfo;
 import com.clothingstore.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,9 +29,8 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("#email == authentication.principal.username or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id, String email) {
-        Order order = orderService.findOrderById(id);
+        Order order = orderService.findOrderById(id, email);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 

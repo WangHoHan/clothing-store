@@ -2,13 +2,16 @@ package com.clothingstore;
 
 import com.clothingstore.model.AccountType;
 import com.clothingstore.model.User;
+import com.clothingstore.security.jwt.JwtConfig;
 import com.clothingstore.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableConfigurationProperties(JwtConfig.class)
 public class ClothingStoreApplication {
 
     public static void main(String[] args) {
