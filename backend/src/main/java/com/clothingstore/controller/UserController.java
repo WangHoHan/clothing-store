@@ -5,6 +5,7 @@ import com.clothingstore.model.User;
 import com.clothingstore.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,22 +27,25 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
-        User user = userService.findUserById(id);
+    @GetMapping("/{email}")
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = userService.findUserByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<User> registerNewUser(@RequestBody User user) {
-        User newUser = userService.addUser(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/shippingInfo")
     public ResponseEntity<User> addShippingInfoToUser(@RequestBody ShippingInfo shippingInfo,
                                                       @PathVariable("id") Long id) {
         User user = userService.addShippingInfoToUser(shippingInfo, id);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{email}/shippingInfo")
+    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<User> addShippingInfoToUserByEmail(@RequestBody ShippingInfo shippingInfo,
+                                                             @PathVariable("email") String email) {
+        User user = userService.addShippingInfoToUserByEmail(shippingInfo, email);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 

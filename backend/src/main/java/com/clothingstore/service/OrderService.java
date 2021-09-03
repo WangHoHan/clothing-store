@@ -40,9 +40,13 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findOrderById(Long id) {
+    public Order findOrderById(Long id, String email) {
         return orderRepository.findOrderById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order with id " + id + " not found"));
+    }
+
+    public List<Order> findUserOrders(String email) {
+        return orderRepository.findAllByUserEmail(email);
     }
 
     public Order placeOrder(Order order, Long userId, Boolean saveNewShippingInfo) {

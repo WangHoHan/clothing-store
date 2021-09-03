@@ -1,11 +1,11 @@
 package com.clothingstore.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,9 +20,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    @NotBlank
+    @Email
     private String email;
 
-    @JsonIgnore
+    @NotBlank
     private String password;
 
     private String firstName;
@@ -31,7 +34,8 @@ public class User {
 
     private String phoneNumber;
 
-    private String accountType;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<ShippingInfo> shippingInfoList = new ArrayList<>();
@@ -41,7 +45,7 @@ public class User {
 
     public User() {}
 
-    public User(String email, String password, String firstName, String lastName, String phoneNumber, String accountType) {
+    public User(String email, String password, String firstName, String lastName, String phoneNumber, AccountType accountType) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;

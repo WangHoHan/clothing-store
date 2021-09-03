@@ -13,6 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findUserById(Long id);
 
+    Optional<User> findUserByEmail(String email);
+
     void deleteUserById(Long id);
 
     @Query("SELECT o.user FROM Order o WHERE o.id = :id")
