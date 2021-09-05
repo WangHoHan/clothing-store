@@ -1,12 +1,12 @@
 <div id="login-page-wrapper">
   <div id="sign-in-wrapper">
     <div class="sign-register-header">SIGN IN TO YOUR ACCOUNT</div>
-    <form id="form-login">
+    <form id="form-login" #loginForm="ngForm" (ngSubmit)="signIn(loginForm.value)">
       <div class="form-option">
-        <input class="input-text" type="email" placeholder="Email Address">
+        <input class="input-text" ngModel name="email" type="email" placeholder="Email Address">
       </div>
       <div class="form-option">
-        <input class="input-text" type="password" placeholder="Password">
+        <input class="input-text" ngModel name="password" type="password" placeholder="Password">
       </div>
       <div id="form-checkbox-login">
         <input type="checkbox" id="stay-signed-in">

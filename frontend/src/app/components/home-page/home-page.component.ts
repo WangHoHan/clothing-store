@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {Product} from "../../models/product";
-import {ProductService} from "../../services/product.service";
+import {ProductService} from "../../services/product/product.service";
 
 @Component({
   selector: 'app-home-page',

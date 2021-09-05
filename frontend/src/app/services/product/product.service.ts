@@ -12,10 +12,10 @@ export class ProductService {
   constructor(private http : HttpClient) { }
 
   public getProduct(id : string) : Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/product/${id}`)
+    return this.http.get<any>(`${this.apiServerUrl}/product/${id}`);
   }
 
   public getProducts() : Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/product`)
+    return this.http.get<any>(`${this.apiServerUrl}/product`);
   }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../models/product";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ProductService} from "../../services/product.service";
-import {ShoppingBagService} from "../../services/shopping-bag.service";
+import {ProductService} from "../../services/product/product.service";
+import {ShoppingBagService} from "../../services/shopping-bag/shopping-bag.service";
 
 @Component({
   selector: 'app-product-page',

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ShoppingBagService} from "../../services/shopping-bag.service";
+import {ShoppingBagService} from "../../services/shopping-bag/shopping-bag.service";
 import {Product} from "../../models/product";
 
 @Component({
