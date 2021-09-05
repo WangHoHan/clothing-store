@@ -30,14 +30,14 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("authentication.principal.equals(#email) and hasAuthority('ROLE_CUSTOMER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id, String email) {
         Order order = orderService.findOrderById(id, email);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
     @GetMapping("/user/{email}")
-    @PreAuthorize("authentication.principal.equals(#email) or hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("authentication.principal.equals(#email) and hasAuthority('ROLE_CUSTOMER') or hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Order>> getUserOrders(@PathVariable("email") String email) {
         List<Order> orders = orderService.findUserOrders(email);
         return new ResponseEntity<>(orders, HttpStatus.OK);
