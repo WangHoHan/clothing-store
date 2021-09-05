@@ -13,8 +13,11 @@ public class LoginConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/login").allowedOrigins("http://localhost:4200")
-                        .allowedHeaders("access_token", "refresh_token").exposedHeaders("access_token", "refresh_token")
+                registry
+                        .addMapping("/login")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedHeaders("access_token", "refresh_token")
+                        .exposedHeaders("access_token", "refresh_token")
                         .allowCredentials(true);
             }
         };
