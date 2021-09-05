@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ShoppingBagService} from "../../services/shopping-bag/shopping-bag.service";
-import {Product} from "../../models/product";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Product } from "../../models/product";
+import { ShoppingBagService } from "../../services/shopping-bag/shopping-bag.service";
 
 @Component({
   selector: 'app-shopping-bag',

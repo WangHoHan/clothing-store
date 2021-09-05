@@ -1,6 +1,7 @@
+import { first } from "rxjs/operators";
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
-import {first} from "rxjs/operators";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class LoginService {
 
   private apiServerUrl = 'http://localhost:8080';
 
-  constructor(private http : HttpClient) { }
+  constructor(private cookie : CookieService, private http : HttpClient) { }
 
   public signIn(username : string, password : string) {
 
@@ -26,8 +27,20 @@ export class LoginService {
       .pipe(first())
       .subscribe(
         (data: HttpResponse<any>) => {
-          console.log(data.headers.get('access_token'));
-          console.log(data.headers.get('refresh_token'));
+          let httpOptions1 = {
+            headers: new HttpHeaders({ 'Authorization': 'Bearer ' + <string>data.headers.get('access_token')}),
+            observe: 'response' as 'response'
+          };
+          this.http.get<any>(`${this.apiServerUrl}/user/${username}`, httpOptions1).subscribe(
+            (data: HttpResponse<any>) => {
+              let user_id = data.body.id;
+              this.cookie.set("user_id", user_id);
+            },
+            error => {
+            }
+          );
+          this.cookie.set("access_token", <string>data.headers.get('access_token'));
+          this.cookie.set("refresh_token", <string>data.headers.get('refresh_token'));
         },
         error => {
         });
