@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Product} from "../../models/product";
-import {HttpErrorResponse} from "@angular/common/http";
-import {ProductService} from "../../services/product/product.service";
-import {ShoppingBagService} from "../../services/shopping-bag/shopping-bag.service";
+import { ActivatedRoute } from "@angular/router";
+import { HttpErrorResponse } from "@angular/common/http";
+import { Product } from "../../models/product";
+import { ProductService } from "../../services/product/product.service";
+import { ShoppingBagService } from "../../services/shopping-bag/shopping-bag.service";
 
 @Component({
   selector: 'app-product-page',
@@ -35,5 +35,4 @@ export class ProductPageComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.getProduct(id!);
   }
-
 }
