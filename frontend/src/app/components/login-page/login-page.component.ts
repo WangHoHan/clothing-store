@@ -14,6 +14,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   public signIn(loginFormValues : any) {
-    this.loginService.signIn(loginFormValues.email, loginFormValues.password);
+    this.loginService.signIn(loginFormValues.username, loginFormValues.password);
   }
 }

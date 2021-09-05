@@ -11,14 +11,15 @@ export class LoginService {
 
   constructor(private http : HttpClient) { }
 
-  public signIn(email : string, password : string) {
+  public signIn(username : string, password : string) {
 
     let params = new HttpParams({
-      fromObject: { email: email, password: password },
+      fromObject: { username: username, password: password }
     });
 
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }),
+      observe: 'response' as 'response'
     };
 
     return this.http.post<any>(`${this.apiServerUrl}/login`, params.toString(), httpOptions)
@@ -26,7 +27,7 @@ export class LoginService {
       .subscribe(
         (data: HttpResponse<any>) => {
           console.log(data.headers.get('access_token'));
-          console.log("data.headers.get('authorization')");
+          console.log(data.headers.get('refresh_token'));
         },
         error => {
         });
