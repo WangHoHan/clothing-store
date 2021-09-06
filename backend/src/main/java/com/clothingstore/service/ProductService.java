@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -84,6 +85,7 @@ public class ProductService {
                 product.addCategory(category);
             }
         }
+        product.setCreatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -110,6 +112,7 @@ public class ProductService {
                     .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
             product.addCategory(category);
         }
+        product.setUpdatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -119,6 +122,7 @@ public class ProductService {
             ProductInfo productInfo = productInfoRepository.findProductInfoByProductId(product.getId());
             product.setProductInfo(productInfo);
         }
+        product.setUpdatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -128,6 +132,7 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
         stock.setProduct(product);
         stockRepository.save(stock);
+        product.setUpdatedAt(LocalDateTime.now());
         return product;
     }
 

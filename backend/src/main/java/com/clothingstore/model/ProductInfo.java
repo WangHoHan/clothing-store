@@ -40,7 +40,8 @@ public class ProductInfo {
 
     public ProductInfo() {}
 
-    public ProductInfo(String color, String fabrics, String modelSize, String modelHeight, String modelWeight) {
+    public ProductInfo(String collection, String color, String fabrics, String modelSize, String modelHeight, String modelWeight) {
+        this.collection = collection;
         this.color = color;
         this.fabrics = fabrics;
         this.modelSize = modelSize;
@@ -72,6 +73,7 @@ public class ProductInfo {
     public String toString() {
         return "ProductInfo{" +
                 "id=" + id +
+                ", collection='" + collection + '\'' +
                 ", color='" + color + '\'' +
                 ", fabrics='" + fabrics + '\'' +
                 ", modelSize='" + modelSize + '\'' +

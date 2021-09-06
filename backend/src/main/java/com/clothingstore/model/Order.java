@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +31,9 @@ public class Order {
     private Double total;
 
     private Boolean paid;
+
+    @Column(columnDefinition = "DATETIME")
+    private LocalDateTime placedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -68,6 +72,7 @@ public class Order {
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", total=" + total +
                 ", paid=" + paid +
+                ", placedAt=" + placedAt +
                 ", user=" + user +
                 ", shippingInfo=" + shippingInfo +
                 '}';
