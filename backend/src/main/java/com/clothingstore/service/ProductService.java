@@ -4,6 +4,9 @@ import com.clothingstore.exception.ResourceNotFoundException;
 import com.clothingstore.model.*;
 import com.clothingstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -33,6 +36,17 @@ public class ProductService {
 
     public List<Product> findAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Product> findProductsWithFilters(Integer pageNumber, Integer pageSize, String sortBy, String gender, String category, String subCategory, String color) {
+        Pageable products = switch ((sortBy != null) ? sortBy : "default") {
+            case "price_ascending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").ascending());
+            case "price_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").descending());
+            case "date_ascending" -> PageRequest.of(pageNumber, pageSize, Sort.by("date").ascending());
+            case "date_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("date").descending());
+            default -> PageRequest.of(pageNumber, pageSize);
+        };
+        return productRepository.findProductsWithFilters(gender, category, subCategory, color, products);
     }
 
     public Product findProductById(Long id) {

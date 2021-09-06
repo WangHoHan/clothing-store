@@ -27,6 +27,18 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @GetMapping("/filters")
+    public ResponseEntity<List<Product>> getAllProductsWithFilters(@RequestParam(defaultValue = "0") Integer pageNumber,
+                                                                   @RequestParam(defaultValue = "20") Integer pageSize,
+                                                                   @RequestParam(required = false) String sortBy,
+                                                                   @RequestParam(required = false) String gender,
+                                                                   @RequestParam(required = false) String category,
+                                                                   @RequestParam(required = false) String subCategory,
+                                                                   @RequestParam(required = false) String color) {
+        List<Product> products = productService.findProductsWithFilters(pageNumber, pageSize, sortBy, gender, category, subCategory, color);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
         Product product = productService.findProductById(id);
