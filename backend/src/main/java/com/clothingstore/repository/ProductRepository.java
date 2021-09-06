@@ -21,8 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE (:gender IS NULL OR p.gender = :gender) " +
             "AND (:category IS NULL OR c.name = :category) " +
             "AND (:subCategory IS NULL OR c.sub_category = :subCategory) " +
-            "AND (:color IS NULL OR pi.color = :color)", nativeQuery = true)
-    List<Product> findProductsWithFilters(String gender, String category, String subCategory, String color, Pageable pageable);
+            "AND (COALESCE(:color, NULL) IS NULL OR pi.color IN :color)", nativeQuery = true)
+    List<Product> findProductsWithFilters(@Param("gender") String gender, @Param("category") String category, @Param("subCategory") String subCategory, @Param("color") List<String> color, Pageable pageable);
 
     Optional<Product> findProductById(Long id);
 

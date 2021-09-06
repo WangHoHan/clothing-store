@@ -34,7 +34,7 @@ public class ProductController {
                                                                    @RequestParam(required = false) String gender,
                                                                    @RequestParam(required = false) String category,
                                                                    @RequestParam(required = false) String subCategory,
-                                                                   @RequestParam(required = false) String color) {
+                                                                   @RequestParam(defaultValue = "") List<String> color) {
         List<Product> products = productService.findProductsWithFilters(pageNumber, pageSize, sortBy, gender, category, subCategory, color);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }

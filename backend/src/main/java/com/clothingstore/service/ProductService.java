@@ -38,7 +38,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findProductsWithFilters(Integer pageNumber, Integer pageSize, String sortBy, String gender, String category, String subCategory, String color) {
+    public List<Product> findProductsWithFilters(Integer pageNumber, Integer pageSize, String sortBy, String gender, String category, String subCategory, List<String> color) {
         Pageable products = switch ((sortBy != null) ? sortBy : "default") {
             case "price_ascending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").ascending());
             case "price_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").descending());
@@ -46,6 +46,8 @@ public class ProductService {
             case "date_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("date").descending());
             default -> PageRequest.of(pageNumber, pageSize);
         };
+        if (category != null && subCategory != null)
+            category = null;
         return productRepository.findProductsWithFilters(gender, category, subCategory, color, products);
     }
 
