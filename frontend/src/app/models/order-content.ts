@@ -1,5 +1,5 @@
 import { Order } from "./order";
-import {Product} from "./product";
+import { Product } from "./product";
 
 export class OrderContent {
   id : number;

@@ -1,4 +1,4 @@
-import {ProductInfo} from "./product-info";
+import { ProductInfo } from "./product-info";
 
 export class Image {
   id : number;

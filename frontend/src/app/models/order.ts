@@ -1,6 +1,6 @@
-import {OrderContent} from "./order-content";
-import {ShippingInfo} from "./shipping-info";
-import {User} from "./user";
+import { OrderContent } from "./order-content";
+import { ShippingInfo } from "./shipping-info";
+import { User } from "./user";
 
 export class Order {
   id : number;

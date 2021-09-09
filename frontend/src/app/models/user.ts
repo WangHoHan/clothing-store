@@ -1,5 +1,5 @@
-import {ShippingInfo} from "./shipping-info";
-import {Order} from "./order";
+import { Order } from "./order";
+import { ShippingInfo } from "./shipping-info";
 
 export class User {
   id : number;

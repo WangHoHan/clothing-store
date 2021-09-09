@@ -1,5 +1,5 @@
-import {Image} from "./image";
-import {Product} from "./product";
+import { Image } from "./image";
+import { Product } from "./product";
 
 export class ProductInfo {
   id : number;
