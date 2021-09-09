@@ -49,6 +49,19 @@ public class Order {
 
     public Order() {}
 
+    public Order(String shippingMethod, String paymentMethod, Double total, LocalDateTime placedAt, ShippingInfo shippingInfo) {
+        this.shippingMethod = shippingMethod;
+        this.paymentMethod = paymentMethod;
+        this.total = total;
+        this.placedAt = placedAt;
+        this.shippingInfo = shippingInfo;
+    }
+
+    public void addOrderContent(OrderContent orderContent) {
+        this.orderContentList.add(orderContent);
+        orderContent.setOrder(this);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

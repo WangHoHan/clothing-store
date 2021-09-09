@@ -3,6 +3,7 @@ package com.clothingstore.controller;
 import com.clothingstore.model.Order;
 import com.clothingstore.model.OrderContent;
 import com.clothingstore.model.ShippingInfo;
+import com.clothingstore.model.purchase.Purchase;
 import com.clothingstore.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,9 @@ public class OrderController {
 
     @GetMapping("/{id}")
     @PreAuthorize("authentication.principal.equals(#email) and hasAuthority('ROLE_CUSTOMER') or hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id, String email) {
-        Order order = orderService.findOrderById(id, email);
+    public ResponseEntity<Order> getOrderById(@PathVariable("id") Long id,
+                                              @RequestParam(required = false) String email) {
+        Order order = orderService.findOrderById(id);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
@@ -44,7 +46,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Order> placeOrder(@RequestBody Order order,
+    public ResponseEntity<Order> placeOrder(@RequestBody Purchase order,
                                             @RequestParam(required = false) Long userId,
                                             @RequestParam(required = false) Boolean saveNewShippingInfo) {
         Order newOrder = orderService.placeOrder(order, userId, saveNewShippingInfo);

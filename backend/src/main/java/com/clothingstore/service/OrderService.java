@@ -2,19 +2,16 @@ package com.clothingstore.service;
 
 import com.clothingstore.exception.InvalidRequestException;
 import com.clothingstore.exception.ResourceNotFoundException;
-import com.clothingstore.model.Order;
-import com.clothingstore.model.OrderContent;
-import com.clothingstore.model.ShippingInfo;
-import com.clothingstore.model.User;
-import com.clothingstore.repository.OrderContentRepository;
-import com.clothingstore.repository.OrderRepository;
-import com.clothingstore.repository.ShippingInfoRepository;
-import com.clothingstore.repository.UserRepository;
+import com.clothingstore.model.*;
+import com.clothingstore.model.purchase.PurchaseContent;
+import com.clothingstore.model.purchase.Purchase;
+import com.clothingstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,13 +24,16 @@ public class OrderService {
 
     private final ShippingInfoRepository shippingInfoRepository;
 
+    private final ProductRepository productRepository;
+
     private final OrderContentRepository contentRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ShippingInfoRepository shippingInfoRepository, OrderContentRepository contentRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ShippingInfoRepository shippingInfoRepository, ProductRepository productRepository, OrderContentRepository contentRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.shippingInfoRepository = shippingInfoRepository;
+        this.productRepository = productRepository;
         this.contentRepository = contentRepository;
     }
 
@@ -41,7 +41,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findOrderById(Long id, String email) {
+    public Order findOrderById(Long id) {
         return orderRepository.findOrderById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order with id " + id + " not found"));
     }
@@ -50,17 +50,24 @@ public class OrderService {
         return orderRepository.findAllByUserEmail(email);
     }
 
-    public Order placeOrder(Order order, Long userId, Boolean saveNewShippingInfo) {
-        if (order.getShippingInfo() == null) {
+    public Order placeOrder(Purchase purchase, Long userId, Boolean saveNewShippingInfo) {
+        if (purchase.getShippingInfo() == null) {
             throw new InvalidRequestException("Missing shipping information");
         }
-        if (order.getOrderContentList() == null || order.getOrderContentList().isEmpty()) {
+        if (purchase.getOrderContentList() == null || purchase.getOrderContentList().isEmpty()) {
             throw new InvalidRequestException("Missing order content");
+        }
+        Order order = new Order(purchase.getShippingMethod(), purchase.getPaymentMethod(), purchase.getTotal(), LocalDateTime.now(), purchase.getShippingInfo());
+        for (PurchaseContent purchaseContent : purchase.getOrderContentList()) {
+            Long productId = purchaseContent.getProductId();
+            Product product = productRepository.findProductById(productId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Product with id " + productId + " not found"));
+            order.addOrderContent(new OrderContent(product, purchaseContent.getSize(), purchaseContent.getQuantity()));
         }
         if (userId != null) {
             User user = userRepository.findUserById(userId)
                     .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " not found"));
-            ShippingInfo shippingInfo = order.getShippingInfo();
+            ShippingInfo shippingInfo = purchase.getShippingInfo();
             if (!user.getShippingInfoList().contains(shippingInfo)) {
                 if (saveNewShippingInfo) {
                     user.getShippingInfoList().add(shippingInfo);
@@ -69,7 +76,6 @@ public class OrderService {
             user.setUserOrder(order);
             userRepository.save(user);
         }
-        order.setPlacedAt(LocalDateTime.now());
         return orderRepository.save(order);
     }
 

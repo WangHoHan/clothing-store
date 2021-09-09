@@ -32,6 +32,12 @@ public class OrderContent {
 
     public OrderContent() {}
 
+    public OrderContent(Product product, String size, Long quantity) {
+        this.product = product;
+        this.size = size;
+        this.quantity = quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
