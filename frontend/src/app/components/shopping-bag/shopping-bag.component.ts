@@ -1,6 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Product } from "../../models/product";
-import { OrderService } from "../../services/order/order.service";
 
 @Component({
   selector: 'app-shopping-bag',
@@ -9,20 +7,13 @@ import { OrderService } from "../../services/order/order.service";
 })
 export class ShoppingBagComponent implements OnInit, OnDestroy{
 
-  public shoppingBag : Array<Product> = [];
+  constructor() { }
 
-  constructor(private shoppingBagService : OrderService) { }
-
-  public getShoppingBag() : void {
-    this.shoppingBag = this.shoppingBagService.getShoppingBag();
-  }
-
-  ngOnInit(): void {
+  ngOnInit() : void {
     document.body.style.backgroundColor="lightyellow";
-    this.getShoppingBag();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy() : void {
     document.body.style.backgroundColor="unset";
   }
 }

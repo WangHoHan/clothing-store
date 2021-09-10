@@ -14,8 +14,12 @@ export class HomePageComponent implements OnInit {
 
   constructor(private productService : ProductService) { }
 
-  public getProducts() : void {
-    this.productService.getProducts().subscribe(
+  ngOnInit() : void {
+    this.getAllProducts();
+  }
+
+  public getAllProducts() : void {
+    this.productService.getAllProducts().subscribe(
       (response : Array<Product>) => {
         this.products = response;
       },
@@ -24,9 +28,4 @@ export class HomePageComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {
-    this.getProducts();
-  }
-
 }

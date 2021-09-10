@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from "ngx-cookie-service";
+import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { LoginService } from "../../services/login/login.service";
 
 @Component({
@@ -8,12 +10,19 @@ import { LoginService } from "../../services/login/login.service";
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private loginService : LoginService) { }
+  constructor(private cookie : CookieService, private loginService : LoginService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() : void { }
 
-  public signIn(loginFormValues : any) {
-    this.loginService.signIn(loginFormValues.username, loginFormValues.password);
+  public signIn(credentials : any) {
+    this.loginService.signIn(credentials.username, credentials.password)
+      .subscribe(
+      (response : HttpResponse<any>) => {
+        this.cookie.set("access_token", <string>response.headers.get('access_token'));
+        this.cookie.set("refresh_token", <string>response.headers.get('refresh_token'));
+      },
+        (error : HttpErrorResponse) => {
+          alert(error.message);
+        });
   }
 }

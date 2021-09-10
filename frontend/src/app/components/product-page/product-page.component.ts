@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from "@angular/common/http";
 import { Product } from "../../models/product";
 import { ProductService } from "../../services/product/product.service";
-import { OrderService } from "../../services/order/order.service";
 
 @Component({
   selector: 'app-product-page',
@@ -14,10 +13,18 @@ export class ProductPageComponent implements OnInit {
 
   public product! : Product;
 
-  constructor(private route: ActivatedRoute, private productService : ProductService, private shoppingBagSerive : OrderService) { }
+  constructor(private route: ActivatedRoute, private productService : ProductService) { }
+
+  ngOnInit() : void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.getProduct(id);
+    }
+  }
 
   public getProduct(id : string) : void {
-    this.productService.getProduct(id).subscribe(
+    this.productService.getProduct(id)
+      .subscribe(
       (response : Product) => {
         this.product = response;
       },
@@ -25,14 +32,5 @@ export class ProductPageComponent implements OnInit {
         alert(error.message);
       }
     );
-  }
-
-  public addProductToShoppingBag() {
-    this.shoppingBagSerive.addProductToShoppingBag(this.product);
-  }
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.getProduct(id!);
   }
 }
