@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity(name = "Product")
@@ -29,6 +30,12 @@ public class Product {
     private Double price;
 
     private Double discount;
+
+    @Column(columnDefinition = "DATETIME")
+    private LocalDateTime createdAt;
+
+    @Column(columnDefinition = "DATETIME")
+    private LocalDateTime updatedAt;
 
     @OneToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "product_info_id")

@@ -9,17 +9,17 @@ INSERT INTO category (name, sub_category) VALUES ('hoodies & sweatshirts', 'hood
 INSERT INTO category (name, sub_category) VALUES ('jackets', 'bombers');
 INSERT INTO category (name, sub_category) VALUES ('jackets', 'denim');
 
-INSERT INTO product_info (color, fabrics, model_size, model_height, model_weight) VALUES ('black', '100% cotton', 'L', '185', '70');
-INSERT INTO product_info (color, fabrics, model_size, model_height, model_weight) VALUES ('black', '100% cotton', 'L', '185', '70');
-INSERT INTO product_info (color, fabrics, model_size, model_height, model_weight) VALUES ('dark blue', '98% cotton 2% elastane', '32', '185', '70');
-INSERT INTO product_info (color, fabrics, model_size, model_height, model_weight) VALUES ('light beige', '60% cotton 40% polyester', 'M', '185', '70');
-INSERT INTO product_info (color, fabrics, model_size, model_height, model_weight) VALUES ('green', '62% polyamide 38% polyester', 'M', '185', '70');
+INSERT INTO product_info (collection, color, fabrics, model_size, model_height, model_weight) VALUES ('Fall/Winter 2021', 'black', '100% cotton', 'L', '185', '70');
+INSERT INTO product_info (collection, color, fabrics, model_size, model_height, model_weight) VALUES ('Fall/Winter 2021', 'black', '100% cotton', 'L', '185', '70');
+INSERT INTO product_info (collection, color, fabrics, model_size, model_height, model_weight) VALUES ('Fall/Winter 2021', 'dark blue', '98% cotton 2% elastane', '32', '185', '70');
+INSERT INTO product_info (collection, color, fabrics, model_size, model_height, model_weight) VALUES ('Fall/Winter 2021', 'light beige', '60% cotton 40% polyester', 'M', '185', '70');
+INSERT INTO product_info (collection, color, fabrics, model_size, model_height, model_weight) VALUES ('Fall/Winter 2021', 'green', '62% polyamide 38% polyester', 'M', '185', '70');
 
-INSERT INTO product (name, description, gender, price, discount, product_info_id) VALUES ('T-shirt with Print', 'classic black t-shirt with Metallica print', 'men', 35.50, NULL, 1);
-INSERT INTO product (name, description, gender, price, discount, product_info_id) VALUES ('Cargo Pants', 'skinny fit black cargo pants with two large pockets', 'men', 65.00, NULL, 2);
-INSERT INTO product (name, description, gender, price, discount, product_info_id) VALUES ('Regular Jeans', 'regular jeans in dark blue color', 'men', 120.00, 0.15, 3);
-INSERT INTO product (name, description, gender, price, discount, product_info_id) VALUES ('Regular Fit Hoodie', 'light beige hoodie with "Rick and Morty" print on front', 'men', 69.00, NULL, 4);
-INSERT INTO product (name, description, gender, price, discount, product_info_id) VALUES ('Nylon Bomber Jacket', 'short jacket with collar, zipper at front and open inner pocket', 'men', 99.00, 0.35, 5);
+INSERT INTO product (name, description, gender, price, discount, created_at, product_info_id) VALUES ('T-shirt with Print', 'classic black t-shirt with Metallica print', 'men', 35.50, NULL, NOW(), 1);
+INSERT INTO product (name, description, gender, price, discount, created_at, product_info_id) VALUES ('Cargo Pants', 'skinny fit black cargo pants with two large pockets', 'men', 65.00, NULL, NOW(), 2);
+INSERT INTO product (name, description, gender, price, discount, created_at, product_info_id) VALUES ('Regular Jeans', 'regular jeans in dark blue color', 'men', 120.00, 0.15, NOW(), 3);
+INSERT INTO product (name, description, gender, price, discount, created_at, product_info_id) VALUES ('Regular Fit Hoodie', 'light beige hoodie with "Rick and Morty" print on front', 'men', 69.00, NULL, NOW(), 4);
+INSERT INTO product (name, description, gender, price, discount, created_at, product_info_id) VALUES ('Nylon Bomber Jacket', 'short jacket with collar, zipper at front and open inner pocket', 'men', 99.00, 0.35, NOW(), 5);
 
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m4HI5vcP0HJyCvtmXruG-IA1RGvSW3R5PAbh6wvUuiS7boOgQVImm0yrjj6wSzO6rsL8WauKu7XGL6n_iQpWEh3Nr0ezcFnoCXtvaki9pHZV-zFB1Xb9scyuo63EpMpt8kOom-WAgjntzSQZsPBE4E9u-zRt9G4yhRZy6OzkXgzbIJY-McgCAh51AgKeNsFHC?width=768&height=1152&cropmode=none', 't-shirt', 1);
 INSERT INTO image (file, name, product_info_id) VALUES ('https://am3pap002files.storage.live.com/y4m7GBOeAQhU900kh4J9HW5iyXhMkD3Dr4bOfju3qib_4vkWn_rDWjOMsFdL4zN-iVvzuCG_pxrTNThA6_cvUrI2Zen8Ft8JzLuqx5qGCuZw3hTvBpVqXuDZ9Ni6O-x3BnRsx4VlF3vpmQ3S775LOQa3qlWk260frg6IjQwggNs-Gop8S5VH-WG2qWHR4kjjVLr?width=768&height=1152&cropmode=none', 't-shirt 2', 1);

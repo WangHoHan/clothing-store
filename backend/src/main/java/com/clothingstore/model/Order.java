@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +32,9 @@ public class Order {
 
     private Boolean paid;
 
+    @Column(columnDefinition = "DATETIME")
+    private LocalDateTime placedAt;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -44,6 +48,19 @@ public class Order {
     private List<OrderContent> orderContentList = new ArrayList<>();
 
     public Order() {}
+
+    public Order(String shippingMethod, String paymentMethod, Double total, LocalDateTime placedAt, ShippingInfo shippingInfo) {
+        this.shippingMethod = shippingMethod;
+        this.paymentMethod = paymentMethod;
+        this.total = total;
+        this.placedAt = placedAt;
+        this.shippingInfo = shippingInfo;
+    }
+
+    public void addOrderContent(OrderContent orderContent) {
+        this.orderContentList.add(orderContent);
+        orderContent.setOrder(this);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -68,6 +85,7 @@ public class Order {
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", total=" + total +
                 ", paid=" + paid +
+                ", placedAt=" + placedAt +
                 ", user=" + user +
                 ", shippingInfo=" + shippingInfo +
                 '}';

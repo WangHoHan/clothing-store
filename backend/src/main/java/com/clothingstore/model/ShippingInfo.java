@@ -42,6 +42,8 @@ public class ShippingInfo {
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
+    public ShippingInfo() {}
+
     public ShippingInfo(String firstName, String lastName, String line1, String line2, String postalCode, String city, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

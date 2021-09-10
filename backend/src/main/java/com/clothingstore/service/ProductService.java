@@ -4,9 +4,13 @@ import com.clothingstore.exception.ResourceNotFoundException;
 import com.clothingstore.model.*;
 import com.clothingstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -33,6 +37,19 @@ public class ProductService {
 
     public List<Product> findAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Product> findProductsWithFilters(Integer pageNumber, Integer pageSize, String sortBy, String gender, String category, String subCategory, List<String> color) {
+        Pageable products = switch ((sortBy != null) ? sortBy : "default") {
+            case "price_ascending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").ascending());
+            case "price_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("price").descending());
+            case "date_ascending" -> PageRequest.of(pageNumber, pageSize, Sort.by("date").ascending());
+            case "date_descending" -> PageRequest.of(pageNumber, pageSize, Sort.by("date").descending());
+            default -> PageRequest.of(pageNumber, pageSize);
+        };
+        if (category != null && subCategory != null)
+            category = null;
+        return productRepository.findProductsWithFilters(gender, category, subCategory, color, products);
     }
 
     public Product findProductById(Long id) {
@@ -68,6 +85,7 @@ public class ProductService {
                 product.addCategory(category);
             }
         }
+        product.setCreatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -94,6 +112,7 @@ public class ProductService {
                     .orElseThrow(() -> new ResourceNotFoundException("Category with id " + categoryId + " not found"));
             product.addCategory(category);
         }
+        product.setUpdatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -103,6 +122,7 @@ public class ProductService {
             ProductInfo productInfo = productInfoRepository.findProductInfoByProductId(product.getId());
             product.setProductInfo(productInfo);
         }
+        product.setUpdatedAt(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -112,6 +132,7 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product with id " + id + " not found"));
         stock.setProduct(product);
         stockRepository.save(stock);
+        product.setUpdatedAt(LocalDateTime.now());
         return product;
     }
 
