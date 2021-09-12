@@ -28,11 +28,11 @@ public class OrderContent {
 
     private String size;
 
-    private Long quantity;
+    private Integer quantity;
 
     public OrderContent() {}
 
-    public OrderContent(Product product, String size, Long quantity) {
+    public OrderContent(Product product, String size, Integer quantity) {
         this.product = product;
         this.size = size;
         this.quantity = quantity;
