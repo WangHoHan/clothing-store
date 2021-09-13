@@ -13,5 +13,5 @@ public class PurchaseContent {
 
     private String size;
 
-    private Long quantity;
+    private Integer quantity;
 }
