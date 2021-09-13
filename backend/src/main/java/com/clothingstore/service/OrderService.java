@@ -52,6 +52,7 @@ public class OrderService {
         return orderRepository.findAllByUserEmail(email);
     }
 
+    @Transactional
     public Order placeOrder(Purchase purchase, Long userId, Boolean saveNewShippingInfo) {
         if (purchase.getShippingInfo() == null) {
             throw new InvalidRequestException("Missing shipping information");
