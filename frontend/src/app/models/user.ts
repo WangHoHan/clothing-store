@@ -13,7 +13,8 @@ export class User {
   orders : Array<Order>;
 
   constructor(id : number, email : string, password : string, firstName : string, lastName : string,
-              phoneNumber : string, accountType : string, shippingInfoList : Array<ShippingInfo>,  orders : Array<Order>) {
+              phoneNumber : string, accountType : string, shippingInfoList : Array<ShippingInfo>,
+              orders : Array<Order>) {
     this.id = id;
     this.email = email;
     this.password = password;

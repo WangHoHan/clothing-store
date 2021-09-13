@@ -10,12 +10,14 @@ export class Order {
   paymentMethod : string;
   total : number;
   paid : boolean;
+  placedAt : Date;
   user : User;
   shippingInfo : ShippingInfo;
   orderContentList : Array<OrderContent>;
 
   constructor(id : number, state : string, tracking : string, shippingMethod : string, paymentMethod : string,
-              total : number, paid : boolean, user : User, shippingInfo : ShippingInfo, orderContentList : Array<OrderContent>) {
+              total : number, paid : boolean, placedAt : Date, user : User, shippingInfo : ShippingInfo,
+              orderContentList : Array<OrderContent>) {
     this.id = id;
     this.state = state;
     this.tracking = tracking;
@@ -23,6 +25,7 @@ export class Order {
     this.paymentMethod = paymentMethod;
     this.total = total;
     this.paid = paid;
+    this.placedAt = placedAt;
     this.user = user;
     this.shippingInfo = shippingInfo;
     this.orderContentList = orderContentList;

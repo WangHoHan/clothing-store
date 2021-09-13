@@ -3,6 +3,7 @@ import { Product } from "./product";
 
 export class ProductInfo {
   id : number;
+  collection : string;
   color : string;
   fabrics : string;
   images : Array<Image>;
@@ -11,9 +12,10 @@ export class ProductInfo {
   modelWeight : string;
   product : Product;
 
-  constructor(id : number, color : string, fabrics : string, images : Array<Image>, modelSize : string,
-              modelHeight : string, modelWeight : string, product : Product) {
+  constructor(id : number, collection : string, color : string, fabrics : string, images : Array<Image>,
+              modelSize : string, modelHeight : string, modelWeight : string, product : Product) {
     this.id = id;
+    this.collection = collection;
     this.color = color;
     this.fabrics = fabrics;
     this.images = images;
