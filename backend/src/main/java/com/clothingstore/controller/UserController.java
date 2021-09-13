@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -32,6 +34,13 @@ public class UserController {
     public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
         User user = userService.findUserByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/{email}/id")
+    @PreAuthorize("authentication.principal.equals(#email) and hasAuthority('ROLE_CUSTOMER') or hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Long> getUserIdByEmail(@PathVariable("email") String email) {
+        User user = userService.findUserByEmail(email);
+        return new ResponseEntity<>(user.getId(), HttpStatus.OK);
     }
 
     @PostMapping("/{id}/shippingInfo")

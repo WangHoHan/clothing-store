@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,14 +25,17 @@ public class OrderService {
 
     private final ProductRepository productRepository;
 
+    private final StockRepository stockRepository;
+
     private final OrderContentRepository contentRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ShippingInfoRepository shippingInfoRepository, ProductRepository productRepository, OrderContentRepository contentRepository) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, ShippingInfoRepository shippingInfoRepository, ProductRepository productRepository, StockRepository stockRepository, OrderContentRepository contentRepository) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.shippingInfoRepository = shippingInfoRepository;
         this.productRepository = productRepository;
+        this.stockRepository = stockRepository;
         this.contentRepository = contentRepository;
     }
 
@@ -50,6 +52,7 @@ public class OrderService {
         return orderRepository.findAllByUserEmail(email);
     }
 
+    @Transactional
     public Order placeOrder(Purchase purchase, Long userId, Boolean saveNewShippingInfo) {
         if (purchase.getShippingInfo() == null) {
             throw new InvalidRequestException("Missing shipping information");
@@ -57,13 +60,28 @@ public class OrderService {
         if (purchase.getOrderContentList() == null || purchase.getOrderContentList().isEmpty()) {
             throw new InvalidRequestException("Missing order content");
         }
-        Order order = new Order(purchase.getShippingMethod(), purchase.getPaymentMethod(), purchase.getTotal(), LocalDateTime.now(), purchase.getShippingInfo());
+        Order order = new Order(purchase.getShippingMethod(), purchase.getPaymentMethod(), LocalDateTime.now(), purchase.getShippingInfo());
+        double total = 0.0;
         for (PurchaseContent purchaseContent : purchase.getOrderContentList()) {
             Long productId = purchaseContent.getProductId();
+            String sizeTag = purchaseContent.getSize();
+            Integer quantity = purchaseContent.getQuantity();
             Product product = productRepository.findProductById(productId)
                     .orElseThrow(() -> new ResourceNotFoundException("Product with id " + productId + " not found"));
+            Stock stock = stockRepository.findStockByProductIdAndSizeTag(productId, sizeTag)
+                    .orElseThrow(() -> new ResourceNotFoundException("Product with id " + productId + " does not have a size " + sizeTag));
+            if (quantity > stock.getQuantity())
+                throw new InvalidRequestException(("Not enough products available in stock"));
+            stockRepository.buyProducts(quantity, productId, sizeTag);
+            Double price = product.getPrice();
+            Double discount = product.getDiscount();
+            if (discount != null)
+                total += quantity * price * (1 - discount);
+            else
+                total += quantity * price;
             order.addOrderContent(new OrderContent(product, purchaseContent.getSize(), purchaseContent.getQuantity()));
         }
+        order.setTotal(total);
         if (userId != null) {
             User user = userRepository.findUserById(userId)
                     .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " not found"));

@@ -16,8 +16,6 @@ public class Purchase {
 
     private String paymentMethod;
 
-    private Double total;
-
     private ShippingInfo shippingInfo;
 
     private List<PurchaseContent> orderContentList;
