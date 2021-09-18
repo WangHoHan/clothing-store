@@ -3,16 +3,21 @@
     <div id="product-name">{{product.name}}</div>
     <div id="product-price">{{product.price}} zł</div>
     <div id="product-description">{{product.description}}</div>
-    <div>I’VE FOUND 0 COLORS OF THIS STYLE:</div>
+    <div>I’VE FOUND 1 COLOR OF THIS STYLE:</div>
     <button id="button-product-color">{{product.productInfo.color}}</button>
     <div>I’VE FOUND THESE SIZES FOR THIS PRODUCT:</div>
-    <div id="product-size" *ngFor="let size of product.stock">
-      <button id="button-product-size">{{size.sizeTag}}</button>
-    </div>
+    <form id="form-add-to-bag" #addToBagForm="ngForm" (ngSubmit)="addProductToShoppingBag(product, addToBagForm.value)">
+      <div id="product-size" *ngFor="let size of product.stock">
+        <label>
+          <input id="button-product-size" type="radio" ngModel name="size" [value]="size.sizeTag" [(ngModel)]="size.sizeTag">
+          <span>{{size.sizeTag}}</span>
+        </label>
+      </div>
+    </form>
     <div id="size-help">Size Help</div>
     <div>CONFIRM YOUR ACTION:</div>
     <div id="action-buttons-wrapper">
-      <button id="button-add-to-bag">ADD TO BAG</button>
+      <button id="button-add-to-bag" type="submit" form="form-add-to-bag" value="ADD TO BAG">ADD TO BAG</button>
       <button id="button-save-to-wishlist">SAVE TO WISHLIST</button>
     </div>
     <div id="additional-info">

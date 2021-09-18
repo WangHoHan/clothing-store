@@ -52,7 +52,12 @@ button:hover {
   display: inline-flex;
 }
 
+input[type="radio"] {
+  -webkit-appearance: none;
+}
+
 #button-product-size {
+  background-color: rgb(210, 210, 210);
   border: 0px;
   border-radius: 5px;
   font-family: 'IBM Plex Mono', monospace;
@@ -67,7 +72,20 @@ button:hover {
 
 #button-product-size:hover {
   background-color: grey;
+  cursor: pointer;
+}
+
+#button-product-size:checked {
+  background-color: darkgreen;
+  cursor: pointer;
+}
+
+label span {
   color: white;
+  cursor: pointer;
+  left: -24px;
+  position: relative;
+  top: -16px;
 }
 
 #size-help {
