@@ -15,10 +15,35 @@ export class ShoppingBagComponent implements OnInit, OnDestroy {
 
   ngOnInit() : void {
     document.body.style.backgroundColor="lightyellow";
-    this.shoppingBag = this.shoppingBagService.getShoppingBag();
+    this.shoppingBag = this.getShoppingBag();
   }
 
   ngOnDestroy() : void {
     document.body.style.backgroundColor="unset";
+  }
+
+  public getNumberOfProductsInShoppingBag() : number {
+    return this.shoppingBagService.getNumberOfProductsInShoppingBag();
+}
+
+public getShippingFee() : number {
+    return this.shoppingBagService.getShippingFee();
+}
+
+public getShoppingBag() : Array<ShoppingBagProduct> {
+  return this.shoppingBagService.getShoppingBag();
+}
+
+  public getSubTotal() : number {
+    return this.shoppingBagService.getSubTotal();
+  }
+
+  public getTotal() : number {
+    return this.shoppingBagService.getTotal();
+  }
+
+  public removeProductFromShoppingBag(shoppingBagProduct : ShoppingBagProduct) : void {
+    this.shoppingBagService.removeProductFromShoppingBag(shoppingBagProduct);
+    this.shoppingBag = this.getShoppingBag();
   }
 }

@@ -2,7 +2,7 @@
   <div id="products-wrapper">
     <div id="products-header">
       <span>YOUR SHOPPING BAG</span>
-      <span>[{{shoppingBag.length}}]</span>
+      <span>[{{getNumberOfProductsInShoppingBag()}}]</span>
     </div>
     <div id="product-wrapper" *ngFor="let shoppingBagProduct of shoppingBag; let i = index">
       <div id="product">
@@ -14,7 +14,7 @@
         <div class="product-info">QUANTITY: {{shoppingBagProduct.quantity}}</div>
         <div class="product-actions">Edit</div>
         <div class="product-actions">Move To Wishlist</div>
-        <div class="product-actions">Remove</div>
+        <div class="product-actions" (click)="removeProductFromShoppingBag(shoppingBagProduct)">Remove</div>
       </div>
     </div>
   </div>
@@ -23,15 +23,15 @@
       <div id="order-summary">YOUR ORDER SUMMARY</div>
       <div class="money-wrapper">
         <div>SUBTOTAL</div>
-        <div>0 zł</div>
+        <div>{{getSubTotal()}} zł</div>
       </div>
       <div class="money-wrapper">
         <div>SHIPPING</div>
-        <div>0 zł</div>
+        <div>{{getShippingFee()}} zł</div>
       </div>
       <div class="money-wrapper">
         <div>TOTAL (VAT INCLUDED)</div>
-        <div>0 zł</div>
+        <div>{{getTotal()}} zł</div>
       </div>
       <button id="button-checkout">CHECKOUT SECURELY</button>
       <div id="order-help">

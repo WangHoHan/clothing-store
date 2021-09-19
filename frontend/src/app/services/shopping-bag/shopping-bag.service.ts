@@ -26,8 +26,50 @@ export class ShoppingBagService {
     localStorage.setItem("shoppingBag", JSON.stringify(this.shoppingBag));
   }
 
+  public getNumberOfProductsInShoppingBag() : number {
+    let numberOfProductsInShoppingBag : number = 0;
+    if (localStorage.getItem("shoppingBag") != null) {
+      this.shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+      this.shoppingBag.forEach(elem => {
+        numberOfProductsInShoppingBag = numberOfProductsInShoppingBag + elem.quantity;
+      });
+    }
+    return numberOfProductsInShoppingBag;
+  }
+
+  public getShippingFee() : number {
+    let shippingFee : number = 10;
+    return shippingFee;
+  }
+
   public getShoppingBag() : Array<ShoppingBagProduct> {
-    this.shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+    if (localStorage.getItem("shoppingBag") != null) {
+      this.shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+    }
     return this.shoppingBag;
+  }
+
+  public getSubTotal() : number {
+    let subTotal : number = 0;
+    if (localStorage.getItem("shoppingBag") != null) {
+      this.shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+      this.shoppingBag.forEach(elem => {
+        subTotal = subTotal + elem.product.price * elem.quantity;
+      });
+    }
+    return subTotal;
+  }
+
+  public getTotal() : number {
+    return this.getSubTotal() + this.getShippingFee();
+  }
+
+  public removeProductFromShoppingBag(shoppingBagProduct : ShoppingBagProduct) : void {
+    if (localStorage.getItem("shoppingBag") != null) {
+      this.shoppingBag = JSON.parse(<string>localStorage.getItem("shoppingBag"));
+      this.shoppingBag = this.shoppingBag.filter(elem => (elem.product.id !== shoppingBagProduct.product.id ||
+      elem.size !== shoppingBagProduct.size));
+      localStorage.setItem("shoppingBag", JSON.stringify(this.shoppingBag));
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShoppingBagService } from "../../services/shopping-bag/shopping-bag.service";
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shoppingBagService : ShoppingBagService) { }
 
   ngOnInit() : void { }
+
+  public getNumberOfProductsInShoppingBag() : number {
+    return this.shoppingBagService.getNumberOfProductsInShoppingBag();
+  }
 }

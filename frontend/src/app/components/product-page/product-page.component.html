@@ -3,7 +3,7 @@
     <div id="product-name">{{product.name}}</div>
     <div id="product-price">{{product.price}} zł</div>
     <div id="product-description">{{product.description}}</div>
-    <div>I’VE FOUND 1 COLOR OF THIS STYLE:</div>
+    <div>I’VE FOUND THESE COLORS OF THIS STYLE:</div>
     <button id="button-product-color">{{product.productInfo.color}}</button>
     <div>I’VE FOUND THESE SIZES FOR THIS PRODUCT:</div>
     <form id="form-add-to-bag" #addToBagForm="ngForm" (ngSubmit)="addProductToShoppingBag(product, addToBagForm.value)">
