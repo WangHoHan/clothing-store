@@ -14,7 +14,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() : void { }
 
-  public signIn(credentials : any) {
+  public signIn(credentials : any) : void {
     this.loginService.signIn(credentials.username, credentials.password)
       .subscribe(
       (response : HttpResponse<any>) => {

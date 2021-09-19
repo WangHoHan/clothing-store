@@ -38,7 +38,7 @@ export class ShoppingBagService {
   }
 
   public getShippingFee() : number {
-    let shippingFee : number = 10;
+    let shippingFee : number = 0;
     return shippingFee;
   }
 

@@ -2,7 +2,7 @@ import { Order } from "./order";
 import { User } from "./user";
 
 export class ShippingInfo {
-  id : number;
+  id : number | undefined;
   firstName : string;
   lastName : string;
   line1 : string;
@@ -10,11 +10,11 @@ export class ShippingInfo {
   postalCode : string;
   city : string;
   phoneNumber : string;
-  user : User;
-  orders : Array<Order>;
+  user : User | undefined;
+  orders : Array<Order> | undefined;
 
-  constructor(id : number, firstName : string, lastName : string, line1 : string, line2 : string, postalCode : string,
-              city : string, phoneNumber : string, user : User, orders : Array<Order>) {
+  constructor(firstName : string, lastName : string, line1 : string, line2 : string, postalCode : string,
+              city : string, phoneNumber : string, id? : number, user? : User, orders? : Array<Order>) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
