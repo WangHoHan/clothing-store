@@ -104,7 +104,13 @@ button:hover {
   padding-bottom: 20px !important;
   position: fixed !important;
   right: 0px !important;
-  top: 128px !important;
+  top: 95px !important;
+}
+
+@media only screen and (max-width: 644px) {
+  ::ng-deep .mat-menu-panel {
+    top: 130px !important;
+  }
 }
 
 ::ng-deep .mat-menu-content {
