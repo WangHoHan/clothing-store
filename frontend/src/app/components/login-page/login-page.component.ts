@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CookieService } from "ngx-cookie-service";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { LoginService } from "../../services/login/login.service";
+import {Product} from "../../models/product";
 
 @Component({
   selector: 'app-login-page',
@@ -20,6 +21,14 @@ export class LoginPageComponent implements OnInit {
       (response : HttpResponse<any>) => {
         this.cookie.set("access_token", <string>response.headers.get('access_token'));
         this.cookie.set("refresh_token", <string>response.headers.get('refresh_token'));
+        this.loginService.getUserId(credentials.username, this.cookie.get("access_token"))
+          .subscribe(
+            (response1 : HttpResponse<any>) => {
+              this.cookie.set("user_id", response1.body);
+            },
+            (error1 : HttpErrorResponse) => {
+              alert(error1.message);
+            });
       },
         (error : HttpErrorResponse) => {
           alert(error.message);
