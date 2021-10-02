@@ -3,6 +3,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from "./components/login-page/login-page.component";
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NgModule } from '@angular/core';
+import { ProductAddDialogComponent } from "./components/product-add-dialog/product-add-dialog.component";
 import { ProductPageComponent } from './components/product-page/product-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ShoppingBagComponent } from "./components/shopping-bag/shopping-bag.component";
@@ -22,4 +23,4 @@ import { ShoppingBagComponent } from "./components/shopping-bag/shopping-bag.com
 })
 export class AppRoutingModule { }
 export const routingComponents = [FooterComponent, HomePageComponent, LoginPageComponent, NavigationComponent,
-  ProductPageComponent, ShoppingBagComponent]
+  ProductAddDialogComponent, ProductPageComponent, ShoppingBagComponent]

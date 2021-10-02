@@ -5,22 +5,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from "ngx-cookie-service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
 import { NgModule } from '@angular/core';
+import { ProductAddDialogComponent } from "./components/product-add-dialog/product-add-dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents
   ],
-    imports: [
-      AppRoutingModule,
-      BrowserAnimationsModule,
-      BrowserModule,
-      FormsModule,
-      HttpClientModule,
-      MatMenuModule
-    ],
+  entryComponents: [
+    ProductAddDialogComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatMenuModule
+  ],
   providers: [
     CookieService
   ],
