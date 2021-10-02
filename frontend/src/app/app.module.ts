@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from "ngx-cookie-service";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatMenuModule } from "@angular/material/menu";
 import { NgModule } from '@angular/core';
@@ -24,6 +25,7 @@ import { ProductAddDialogComponent } from "./components/product-add-dialog/produ
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    MatButtonModule,
     MatDialogModule,
     MatMenuModule
   ],

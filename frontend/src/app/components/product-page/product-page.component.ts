@@ -28,7 +28,8 @@ export class ProductPageComponent implements OnInit {
 
   public addProductToShoppingBag(product : Product, productInfo : any) : void {
     this.shoppingBagService.addProductToShoppingBag(product, productInfo.size);
-    this.dialog.open(ProductAddDialogComponent);
+    this.dialog.open(ProductAddDialogComponent, {data: {name: this.product.name, price: this.product.price,
+        description: this.product.description, size: productInfo.size}});
   }
 
   public getProduct(id : string) : void {

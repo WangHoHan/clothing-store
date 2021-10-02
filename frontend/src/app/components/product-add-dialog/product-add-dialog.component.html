@@ -1,1 +1,8 @@
-<p>product-add-dialog works!</p>
+<h4 mat-dialog-title>Product has been added to the shopping bag</h4>
+<mat-dialog-content>name: {{data.name}}</mat-dialog-content>
+<mat-dialog-content>price: {{data.price}} zł</mat-dialog-content>
+<mat-dialog-content>description: {{data.description}}</mat-dialog-content>
+<mat-dialog-content>size: {{data.size}}</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>OK</button>
+</mat-dialog-actions>
